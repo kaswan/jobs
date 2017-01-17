@@ -14,7 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'MEDICAL JOBS（求職者管理）');
+$cakeDescription = __d('cake_dev', 'JOBS CONSTRUCTION（技術者管理）');
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ $cakeDescription = __d('cake_dev', 'MEDICAL JOBS（求職者管理）');
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?>
 			<span class="logout" style="position:inline;margin-top:-20px;">
-			   <?php echo $this->html->link('<span class="glyphicon glyphicon-home"></span>施設一覧','/institutions', array('class' => 'btn btn-success','escape' => false))?>
+			   <?php echo $this->html->link('<span class="glyphicon glyphicon-home"></span>企業一覧','/institutions', array('class' => 'btn btn-success','escape' => false))?>
 			   <?php echo $this->html->link('<span class="glyphicon glyphicon-cog"></span>', '/users/index', array('class' => 'btn btn-info','escape' => false)) ?>
                <?php echo $this->html->link('ログアウト','/users/logout', array('class' => 'btn btn-danger'))?>
 			</span> 
@@ -68,7 +68,7 @@ $cakeDescription = __d('cake_dev', 'MEDICAL JOBS（求職者管理）');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			Copyright © 2015 MEDICAL JOBS All Rights Reserved.
+			Copyright © 2017 JOBS CONSTRUCTION All Rights Reserved.
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>

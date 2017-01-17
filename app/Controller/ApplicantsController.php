@@ -101,7 +101,7 @@ class ApplicantsController extends AppController {
 			}
 		}
 		# for latest update check applicants and migrate data
-		$this->migration();
+		#$this->migration();
 		
 		$conditions['Applicant.deleted'] = false;
 		

@@ -134,15 +134,7 @@
 	        </div>       
 	        <div class="row">
                <div class="col-xs-12">
-                  <?php 
-                  echo $this->Form->radio('education',
-			 
-									array(
-										"大学" => "大学", 
-										"専門学校" => "専門学校", 
-										"高校" => "高校",
-										"その他" => "その他"), 
-									array('legend' => false, 'div' => false)); ?>
+               <?php echo $this->Form->input('education', array('label' => false, 'class' => 'form-control')); ?>
                </div>
             </div>
                
@@ -158,14 +150,10 @@
                   echo "<br>";
                   echo $this->Form->radio('employment_pattern', 
 									array(
-										"常勤（夜勤有）" => "常勤（夜勤有）", 
-										"常勤（夜勤無）" => "常勤（夜勤無）", 
-										"非常勤" => "非常勤",
-										"夜勤常勤" => "夜勤常勤",
-										"夜勤アルバイト" => "夜勤アルバイト",
-										"派遣" => "派遣",
-										"応援" => "応援",
-										"その他" => "その他"), 
+										"正社員" => "正社員", 
+										"入社予定" => "入社予定", 
+										"8:00～17:00（19:00）" => "8:00～17:00（19:00）",
+										), 
 									array('legend' => false, 'div' => false)); ?>
                </div>
                <div class="col-xs-4">
@@ -176,16 +164,15 @@
             <div class="row">
                <div class="col-xs-12">
 				<?php
-				echo $this->Form->label('desired_joining_time', '希望転職（入職）時期');
+				echo $this->Form->label('desired_joining_time', '出張可否');
 				echo "<br>";
 				echo $this->Form->radio('desired_joining_time', 
 									array(
-										"即日可能" => "即日可能",
-						               "1ヶ月以内" => "1ヶ月以内",
-						               "3ヶ月以内" => "3ヶ月以内",
-						               "6ヶ月以内" => "6ヶ月以内",
-						               "１年以内" => "１年以内",
-						               "未定" => "未定"),
+										"可能" => "可能",
+						               "不可" => "不可",
+						               "要相談" => "要相談",
+						               "入寮希望" => "入寮希望",
+						               ),
 								array('legend' => false, 'div' => false));
 				?>
                </div>
@@ -194,61 +181,27 @@
             <div class="row">
                <div class="col-xs-12">
 				<?php
-				echo $this->Form->label('places_of_employment', '就業場所');
+				echo $this->Form->label('places_of_employment', '夜勤可否');
 				echo "<br>";
 				echo $this->Form->radio('places_of_employment', 
 									array(
-										"病院" => "病院",
-						               "クリニック" => "クリニック",
-						               "施設" => "施設",
-						               "訪問" => "訪問",
-										"デイ" => "デイ",
-						               "企業" => "企業",
-						               "その他" => "その他"),
+										"可能" => "可能",
+						               "不可" => "不可",
+						               "要相談" => "要相談",
+						               ),
 								array('legend' => false, 'div' => false));
 				?>
                </div>
             </div> 
-            <div class="row">
-            	<div class="col-xs-6">
-                  <?php echo $this->Form->input('annual_income', array('label' => '希望年収', 'class' => 'form-control')); ?>
-                </div>
-                <div class="col-xs-6">
-                  <?php echo $this->Form->input('holiday', array('label' => '希望休日', 'class' => 'form-control')); ?>
-                </div>
-            </div>
-            <div class="row">
-            	<div class="col-xs-6">
-                  <?php echo $this->Form->input('working_hours', array('label' => '希望勤務時間', 'class' => 'form-control')); ?>
-                </div>
-                <div class="col-xs-6">
-                  <?php echo $this->Form->input('commuting_time', array('label' => '希望通勤時間', 'class' => 'form-control')); ?>
-                </div>
-            </div>
-            
-            <div class="row">
-            	<div class="col-xs-6">
-                  <?php echo $this->Form->input('desired_working_days', array('label' => '希望勤務日数', 'class' => 'form-control')); ?>
-                </div>
-                <div class="col-xs-6">
-                  <?php echo $this->Form->input('desired_department', array('label' => '希望部署', 'class' => 'form-control')); ?>
-                </div>
-            </div>
+           
             
             <div class="row">
                <div class="col-xs-12">
 				<?php
-				echo $this->Form->label('commuting', '交通');
+				echo $this->Form->label('commuting', '通勤手段');
 				echo "<br>";
-				echo $this->Form->radio('commuting', 
-									array(
-										"公共交通機関" => "公共交通機関",
-						               "車" => "車",
-						               "バイク" => "バイク",
-						               "自転車" => "自転車",
-						               "徒歩" => "徒歩"),
-								array('legend' => false, 'div' => false));
-				?>
+				echo $this->Form->input('commuting', array('label' => false, 'class' => 'form-control')); ?>
+				
                </div>
             </div> 
              
@@ -256,19 +209,9 @@
             <div class="row">   
                <div class="col-xs-12">
                   <fieldset>
-                     <legend><?php echo '職歴';?></legend>
+                     <legend><?php echo '経歴';?></legend>
                      <table id="work-table">
-                        <thead>
-                           <tr>
-                              <th>勤務先名称</th>
-                              <th>名称</th>
-                              <th>部署</th>
-                              <th>科目</th>
-                              <th>雇用形態</th>
-                              <th>在籍年</th>
-                              <th>&nbsp;</th>
-                           </tr>
-                        </thead>
+                        
                         <tbody>
                            <?php if (!empty($this->request->data['WorkHistory'])) :?>
                               <?php for ($key = 0; $key < count($this->request->data['WorkHistory']); $key++) :?>
@@ -278,7 +221,7 @@
                         </tbody>
                         <tfoot>
                            <tr>
-                              <td colspan="6"></td>
+                              <td colspan="2"></td>
                               <td><a href="#" class="add btn-success btn-xs">追加</a></td>
                            </tr>
                         </tfoot>
@@ -307,7 +250,7 @@
             <div class="row">   
                <div class="col-xs-12">
                <fieldset>
-                  <legend>備考（エントリシート用）</legend>
+                  <legend>備考（エントリーシート用　コメント）</legend>
                   <?php  echo $this->Form->input('entry_sheet_remarks', array('label' => false,'class' => 'form-control'));  ?>
                </fieldset>
                </div>
@@ -322,9 +265,11 @@
                 <div class="col-xs-4">
                 <?php echo $this->Form->input('progress_status_id', array('label' => false, 'class' => 'form-control','options' => array('' => '') + $statuses)); ?>
                 </div>
+                <!-- 
                 <div class="col-xs-6">
             		<?php if(!empty($institution_lists)) echo $this->Form->input('institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "施設を選ぶ",'options' => array('' => '法人施設を選ぶ・・・') + $institution_lists)); ?>
 				</div>
+				 -->
             </div>
             
             
