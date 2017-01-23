@@ -7,6 +7,9 @@ $key = isset($key) ? $key : '<%= key %>';
         <?php echo $this->Form->text("ContactPerson.{$key}.department", array('size' => '10px', 'class' => 'form-control')); ?>
     </td>
     <td>
+        <?php echo $this->Form->text("ContactPerson.{$key}.area", array('size' => '10px', 'class' => 'form-control')); ?>
+    </td>
+    <td>
         <?php echo $this->Form->text("ContactPerson.{$key}.name", array('size' => '10px', 'class' => 'form-control')); ?>
     </td>
     <td>
@@ -19,7 +22,9 @@ $key = isset($key) ? $key : '<%= key %>';
     <td>
         <?php echo $this->Form->text("ContactPerson.{$key}.email", array('size' => '15px', 'class' => 'form-control')); ?>
     </td>
-    
+    <td>
+        <?php echo $this->Form->text("ContactPerson.{$key}.intro", array('size' => '10px', 'class' => 'form-control')); ?>
+    </td>
     <td >
         <a href="#" class="remove btn btn-danger btn-xs" >削除</a>
     </td>

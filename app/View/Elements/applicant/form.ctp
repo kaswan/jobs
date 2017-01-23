@@ -164,9 +164,9 @@
             <div class="row">
                <div class="col-xs-12">
 				<?php
-				echo $this->Form->label('desired_joining_time', '出張可否');
+				echo $this->Form->label('business_trip_availability', '出張可否');
 				echo "<br>";
-				echo $this->Form->radio('desired_joining_time', 
+				echo $this->Form->radio('business_trip_availability', 
 									array(
 										"可能" => "可能",
 						               "不可" => "不可",
@@ -181,9 +181,9 @@
             <div class="row">
                <div class="col-xs-12">
 				<?php
-				echo $this->Form->label('places_of_employment', '夜勤可否');
+				echo $this->Form->label('night_shift_availability', '夜勤可否');
 				echo "<br>";
-				echo $this->Form->radio('places_of_employment', 
+				echo $this->Form->radio('night_shift_availability', 
 									array(
 										"可能" => "可能",
 						               "不可" => "不可",
@@ -233,17 +233,17 @@
                </div>
             </div>
 
-            <div class="row">
-                <div class="col-xs-12">
-                  <legend>契約情報</legend>
-                	<?php  echo $this->Form->input('contract_document', array('label' => '書類関係', 'rows' => 2,'class' => 'form-control'));  ?>
-                </div>
-            </div>
-            
             <div class="row">   
                <div class="col-xs-12">
                   <legend>備考</legend>
                  <?php  echo $this->Form->input('remarks', array('label' => false, 'class' => 'form-control'));  ?>
+               </div>
+            </div>
+            
+            <div class="row">   
+               <div class="col-xs-12">
+                  <legend>備考（事務用）</legend>
+                 <?php  echo $this->Form->input('remarks_for_office_use', array('label' => false, 'class' => 'form-control'));  ?>
                </div>
             </div>
             
@@ -263,16 +263,24 @@
             </div>
             <div class="row">
                 <div class="col-xs-4">
-                <?php echo $this->Form->input('progress_status_id', array('label' => false, 'class' => 'form-control','options' => array('' => '') + $statuses)); ?>
+                  <?php echo $this->Form->input('progress_status_id', array('label' => false, 'class' => 'form-control','options' => array('' => '') + $statuses)); ?>
                 </div>
-                <!-- 
                 <div class="col-xs-6">
-            		<?php if(!empty($institution_lists)) echo $this->Form->input('institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "施設を選ぶ",'options' => array('' => '法人施設を選ぶ・・・') + $institution_lists)); ?>
-				</div>
-				 -->
+            		  <?php if(!empty($institution_lists)) echo $this->Form->input('institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "施設を選ぶ",'options' => array('' => '法人施設を選ぶ・・・') + $institution_lists)); ?>
+			          </div>
             </div>
             
-            
+            <div class="row">
+                <div class="col-xs-12">
+                	<legend>ランク</legend>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                  <?php echo $this->Form->input('rank_id', array('label' => false, 'class' => 'form-control','options' => array('' => '') + $ranks)); ?>
+                </div>
+                <div class="col-xs-6"></div>
+            </div>
             
             <div class="row">   
                <div class="col-xs-12">

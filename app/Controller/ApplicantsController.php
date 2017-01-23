@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class ApplicantsController extends AppController {
 
 	public $uses = array('Applicant','Institution','WorkType','Prefecture', 'ProgressStatus', 'User', 
-			'WorkHistory', 'QualificationHistory', 'UploadDocument', 'Post', 'Qualification');
+			'WorkHistory', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType');
 	public $components = array('Paginator','Mpdf', 'RequestHandler');
 	public $paginate = array();
 	
@@ -32,6 +32,19 @@ class ApplicantsController extends AppController {
 	    }
 	    $this->set('statuses', $progress_status);
 	    
+	    $ranks = Cache::read('lists','ranks');
+	    if (!$ranks) {
+	    	$ranks = $this->Rank->find('list',array('fields' => array('id', 'name')));
+	    	Cache::write('lists', $ranks, 'ranks');
+	    }
+	    $this->set('ranks', $ranks);
+	    
+	    $media_types = Cache::read('lists','ranks');
+	    if (!$media_types) {
+	    	$media_types = $this->MediaType->find('list',array('fields' => array('id', 'name')));
+	    	Cache::write('lists', $media_types, 'media_types');
+	    }
+	    $this->set('media_types', $media_types);
 	    
 	    $user = Cache::read('lists','user');
 	    if (!$user) {
@@ -308,7 +321,7 @@ class ApplicantsController extends AppController {
 	}
 	
 	public function in_place_editing($id = null) {
-		Configure::write('debug', 0);
+		Configure::write('debug', 2);
 		if (!$id) return;
 		if ($this->request->data) {
 			# get all the fields with its values (there should be only one, but anyway ...)
@@ -319,6 +332,9 @@ class ApplicantsController extends AppController {
 				if($field == 'progress_status_id'){
 					$status = $this->ProgressStatus->read(null, $value);
 					$this->set('updated_value', $status['ProgressStatus']['name']);
+				}elseif ($field == 'media_type_id'){
+					$medium = $this->MediaType->read(null, $value);
+					$this->set('updated_value', $medium['MediaType']['name']);
 				}elseif ($field == 'user_id'){
 					$user = $this->User->read(null, $value);
 					$this->set('updated_value', $user['User']['name']);
@@ -352,6 +368,9 @@ class ApplicantsController extends AppController {
 	}
 
 	function getPrevApplicant($key, $hash = array()) {
+		if(empty($hash)){
+			return false;
+	    }
 		$keys = array_keys($hash);
 		$found_index = array_search($key, $keys);
 		if ($found_index === false || $found_index === 0) return false;
@@ -359,6 +378,9 @@ class ApplicantsController extends AppController {
 	}
 	
 	function getNextApplicant($key, $hash = array()) {
+		if(empty($hash)){
+			return false;
+		}
 		$keys = array_keys($hash);
 		$found_index = array_search($key, $keys);
 		if ($found_index === false || end($hash) === $key) return false;

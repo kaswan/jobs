@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
 class Applicant extends AppModel {
 	
 	
-	public $belongsTo = array('Prefecture', 'ProgressStatus', 'WorkType', 'Institution' => array('counterCache' => true), 'User' => array('counterCache' => true));
+	public $belongsTo = array('Prefecture', 'ProgressStatus', 'MediaType', 'Rank', 'WorkType', 'Institution' => array('counterCache' => true), 'User' => array('counterCache' => true));
 	public $hasMany = array('WorkHistory', 'QualificationHistory' => array('order' => 'QualificationHistory.year DESC, QualificationHistory.month DESC'),
 			                'Note' => array(
 					           'className' => 'Note',

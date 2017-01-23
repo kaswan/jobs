@@ -5,10 +5,10 @@ $key = isset($key) ? $key : '<%= key %>';
     <td>
         <?php echo $this->Form->hidden("WorkHistory.{$key}.id") ?>
        
-        <?php echo $this->Form->text("WorkHistory.{$key}.department_name", array('size' => '15px', 'class' => 'form-control')); ?>
+        <?php echo $this->Form->text("WorkHistory.{$key}.text_field_1", array('size' => '15px', 'class' => 'form-control')); ?>
     </td>
     <td>
-        <?php echo $this->Form->text("WorkHistory.{$key}.discipline", array('size' => '15px', 'class' => 'form-control')); ?>
+        <?php echo $this->Form->text("WorkHistory.{$key}.text_field_2", array('size' => '15px', 'class' => 'form-control')); ?>
     </td>
     
     <td >

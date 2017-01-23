@@ -8,17 +8,9 @@
     </thead>
     
     <tbody>
-      <tr>
-        <td width="200px"><b>法人名</b></td>
-        <td><span style="float:left;width:80%;"><?php echo $institution['Institution']['corporate_name'] ?></span></td>
-      </tr>
-      <tr>
-        <td><b>ふりがな</b></td>
-        <td colspan="2"><?php echo $institution['Institution']['corporate_furigana'] ?></td>
-      </tr>
       
       <tr>
-        <td width="200px"><b>名称</b></td>
+        <td width="200px"><b>お名前</b></td>
         <td><span style="float:left;width:80%;"><?php echo $institution['Institution']['name'] ?></span></td>
       </tr>
       <tr>
@@ -57,11 +49,13 @@
   <table>
     <thead>
       <tr>
-        <th><kbd>部署</kbd></th>
-        <th><kbd>お役職名</kbd></th>
-        <th><kbd>ご担当者名</kbd></th>
-        <th><kbd>直通電話番号</kbd></th>
+        <th><kbd>業種</kbd></th>
+        <th><kbd>エリア</kbd></th>
+        <th><kbd>役職</kbd></th>
+        <th><kbd>名前</kbd></th>        
+        <th><kbd>番号</kbd></th>
         <th><kbd>Email</kbd></th>
+        <th><kbd>紹・派</kbd></th>
       </tr>
     </thead>
     
@@ -69,10 +63,12 @@
      <?php foreach($institution['ContactPerson'] as $contact) {?>
         <tr>
         	<td><?php echo($contact['department'])?></td>
+        	<td><?php echo($contact['area'])?></td>
         	<td><?php echo($contact['name'])?></td>
         	<td><?php echo($contact['title'])?></td>
         	<td><?php echo($contact['direct_phone_number'])?></td>
         	<td><?php echo($contact['email'])?></td>
+        	<td><?php echo($contact['intro'])?></td>
         </tr>
         
      <?php } ?>     
@@ -82,40 +78,71 @@
   <table>
     <thead>
       <tr>
-        <th colspan = '2' ><kbd>施設詳細</kbd></th>      
+        <th colspan = '2' ><kbd>詳細情報</kbd></th>      
       </tr>
     </thead>
     
     <tbody>
       <tr>
-        <td width="200px"><b>区分</b></td>
-        <td><?php echo $institution['Institution']['classification'] ?></td>
+        <td width="200px"><b>得意エリア・得意工事</b></td>
+        <td><?php echo $institution['Institution']['specialty_area'] ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>科目</b></td>
-        <td><?php echo $institution['Institution']['clinical_departments'] ?></td>
+        <td width="200px"><b>指定請求書</b></td>
+        <td><?php echo $institution['Institution']['designated_invoice'] ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>病床数</b></td>
-        <td><?php echo $institution['Institution']['number_of_beds'] ?></td>
+        <td width="200px"><b>会社コード</b></td>
+        <td><?php echo $institution['Institution']['company_code'] ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>看護基準</b></td>
-        <td><?php echo $institution['Institution']['nursing_standards'] ?></td>
+        <td width="200px"><b>携帯の貸出</b></td>
+        <td><?php echo $institution['Institution']['mobile_loan'] ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>利用者数</b></td>
-        <td><?php echo $institution['Institution']['number_of_users'] ?></td>
+        <td width="200px"><b>交通費</b></td>
+        <td><?php echo $institution['Institution']['transportation_expenses'] ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>想定年収</b></td>
-        <td><?php echo $institution['Institution']['expected_annual_income'] ?></td>
+        <td width="200px"><b>宿泊契約</b></td>
+        <td><?php echo $institution['Institution']['accommodation_contract'] ?></td>
       </tr>
+      
+      <tr>
+        <td width="200px"><b>使用CAD</b></td>
+        <td><?php echo $institution['Institution']['cad'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="200px"><b>注意点</b></td>
+        <td><?php echo $institution['Institution']['important_point'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="200px"><b>60歳以上の提案</b></td>
+        <td><?php echo $institution['Institution']['proposal_for_over_60'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="200px"><b>未経験者の提案</b></td>
+        <td><?php echo $institution['Institution']['proposal_for_inexperienced'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="200px"><b>過去の提案技術者</b></td>
+        <td><?php echo nl2br($institution['Institution']['proposed_engineer']) ?></td>
+      </tr>
+      
+      <tr>
+        <td width="150px"><b>その他備考</b></td>
+        <td><?php echo nl2br($institution['Institution']['other_remarks']) ?></td>
+      </tr>
+      
     </tbody>
   </table>
   
@@ -134,39 +161,24 @@
       </tr>
       
       <tr>
-        <td width="200px"><b>契約パーセンテージ</b></td>
-        <td><?php echo $institution['Institution']['contract_percentage'] ?></td>
+        <td width="200px"><b>チャージ提案方式</b></td>
+        <td><?php echo nl2br($institution['Institution']['charge_method']) ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>返金規定</b></td>
-        <td><?php echo nl2br($institution['Institution']['contract_refund_policy']) ?></td>
+        <td width="200px"><b>契約内容</b></td>
+        <td><?php echo nl2br($institution['Institution']['contract_contents']) ?></td>
       </tr>
       
       <tr>
-        <td width="200px"><b>書類関係</b></td>
-        <td><?php echo nl2br($institution['Institution']['contract_document']) ?></td>
-      </tr>
-      
-      <tr>
-        <td width="200px"><b>面接情報</b></td>
-        <td><?php echo nl2br($institution['Institution']['interview_information']) ?></td>
+        <td width="200px"><b>面接選考方法</b></td>
+        <td><?php echo nl2br($institution['Institution']['interview_selection_process']) ?></td>
       </tr>    
-    </tbody>
-  </table>
-  
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2"><kbd>その他</kbd></th>      
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr>
-        <td width="150px"><b>備考</b></td>
+      
+       <tr>
+        <td width="150px"><b>その他備考</b></td>
         <td><?php echo nl2br($institution['Institution']['other']) ?></td>
-      </tr>    
+      </tr>
     </tbody>
   </table>
   

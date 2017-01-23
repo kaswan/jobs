@@ -8,21 +8,11 @@
                 
                 </div>
             </div>
-            
+                      
             <div class="row">
             	<div class="col-xs-1"></div> 
                 <div class="col-xs-5">
-                   <?php echo $this->Form->input('corporate_name', array('label' => '法人名', 'class' => 'form-control')); ?>
-                </div>
-                <div class="col-xs-5">
-                   <?php echo $this->Form->input('corporate_furigana', array('label' => 'ふりがな', 'class' => 'form-control')); ?>
-                </div>                        
-            </div>
-            
-            <div class="row">
-            	<div class="col-xs-1"></div> 
-                <div class="col-xs-5">
-                   <?php echo $this->Form->input('name', array('label' => '名称', 'class' => 'form-control')); ?>
+                   <?php echo $this->Form->input('name', array('label' => 'お名前', 'class' => 'form-control')); ?>
                 </div>
                 <div class="col-xs-5">
                    <?php echo $this->Form->input('furigana', array('label' => 'ふりがな', 'class' => 'form-control')); ?>
@@ -46,12 +36,6 @@
                 </div>
                 <div class="col-xs-5">
                   <?php echo $this->Form->input('address', array('label' => '市区町村', 'class' => 'form-control')); ?>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-xs-12">
-                <kbd>最寄駅</kbd>
                 </div>
             </div>
             
@@ -94,11 +78,13 @@
                      <table id="contact-table">
                         <thead>
                            <tr>
-                              <th>部署</th>
-                              <th>お役職名</th>
-                              <th>ご担当者名</th>
-                              <th>直通電話番号</th>
+                              <th>業種</th>
+                              <th>エリア</th>
+                              <th>役職</th>
+                              <th>名前</th>
+                              <th>番号</th>
                               <th>Email</th>
+                              <th>紹・派</th>
                               <th>&nbsp;</th>
                            </tr>
                         </thead>
@@ -111,7 +97,7 @@
                         </tbody>
                         <tfoot>
                            <tr>
-                              <td colspan="5"></td>
+                              <td colspan="7"></td>
                               <td><a href="#" class="add btn-success btn-xs">追加</a></td>
                            </tr>
                         </tfoot>
@@ -125,45 +111,26 @@
             
             <div class="row">
                 <div class="col-xs-12">
-                <kbd>施設詳細</kbd>
+                <kbd>詳細情報</kbd>
                 </div>
             </div>    
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-5">
-                <?php 
-                   echo $this->Form->label('classification', '区分');
-                   echo "<br>";
-                   echo $this->Form->input('classification', array(
-                              'div' => false, 'label' => false, 'class' => 'form-control',
-                              'options' => array("" => "-- 区分を選択 --",
-                              					'総合病院' => '総合病院',
-                              					'急性期' => '急性期',
-                              					'回復期' => '回復期',
-                              					'療養型' => '療養型',
-                              					'維持期' => '維持期',
-                              					'単科病院' => '単科病院',
-                              					'介護老人保健施設' => '介護老人保健施設',
-                              					'特別養護老人ホーム' => '特別養護老人ホーム',
-                              					'介護付き有料老人ホーム' => '介護付き有料老人ホーム',
-                              					'クリニック' => 'クリニック',
-                              					'訪問看護ステーション' => '訪問看護ステーション',
-                              					'その他' => 'その他'))); 
-                ?>                                                 
-                                
+                  <?php echo $this->Form->input('specialty_area', array('label' => '得意エリア・得意工事 ', 'class' => 'form-control')); ?>
                 </div>
                 <div class="col-xs-5">
-                  <?php echo $this->Form->input('clinical_departments', array('label' => '科目', 'class' => 'form-control')); ?>
+                  <?php echo $this->Form->input('designated_invoice', array('label' => '指定請求書', 'class' => 'form-control')); ?>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-5">
-                  <?php echo $this->Form->input('number_of_beds', array('label' => '病床数', 'class' => 'form-control')); ?>
+                  <?php echo $this->Form->input('company_code', array('label' => '会社コード', 'class' => 'form-control')); ?>
                 </div>
                 <div class="col-xs-5">
-                  <?php echo $this->Form->input('nursing_standards', array('label' => '看護基準', 'class' => 'form-control')); ?>
+                  <?php echo $this->Form->input('mobile_loan', array('label' => '携帯の貸出', 'class' => 'form-control')); ?>
                 </div>                
             </div>
             
@@ -171,13 +138,49 @@
                 <div class="col-xs-1"></div>
                 
                 <div class="col-xs-5">
-                  <?php echo $this->Form->input('number_of_users', array('label' => '利用者数', 'class' => 'form-control')); ?>
+                  <?php echo $this->Form->input('transportation_expenses', array('label' => '交通費', 'class' => 'form-control')); ?>
                 </div>
                 <div class="col-xs-5">
-                  <?php echo $this->Form->input('expected_annual_income', array('label' => '想定年収', 'class' => 'form-control')); ?>
+                  <?php echo $this->Form->input('accommodation_contract', array('label' => '宿泊契約', 'class' => 'form-control')); ?>
                 </div>
             </div>
             
+            <div class="row">
+                <div class="col-xs-1"></div>
+                
+                <div class="col-xs-5">
+                  <?php echo $this->Form->input('cad', array('label' => '使用CAD', 'class' => 'form-control')); ?>
+                </div>
+                <div class="col-xs-5">
+                  <?php echo $this->Form->input('important_point', array('label' => '注意点', 'class' => 'form-control')); ?>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-1"></div>
+                
+                <div class="col-xs-5">
+                  <?php echo $this->Form->input('proposal_for_over_60', array('label' => '60歳以上の提案', 'class' => 'form-control')); ?>
+                </div>
+                <div class="col-xs-5">
+                  <?php echo $this->Form->input('proposal_for_inexperienced', array('label' => '未経験者の提案', 'class' => 'form-control')); ?>
+                </div>
+            </div>
+            
+            
+            <div class="row">
+               <div class="col-xs-1"></div>
+               <div class="col-xs-10">
+                 <?php  echo $this->Form->input('proposed_engineer', array('label' => '過去の提案技術者', 'class' => 'form-control'));  ?>
+               </div>
+            </div>
+            
+            <div class="row">
+               <div class="col-xs-1"></div>
+               <div class="col-xs-10">
+                 <?php  echo $this->Form->input('other_remarks', array('label' => 'その他備考', 'class' => 'form-control'));  ?>
+               </div>
+            </div>
             
             <div class="row">
                 <div class="col-xs-12">
@@ -199,38 +202,31 @@
     				));?>
                       
                 </div>
-                <div class="col-xs-5">
-                  <?php echo $this->Form->input('contract_percentage', array('label' => '契約パーセンテージ', 'class' => 'form-control')); ?>
+                <div class="col-xs-5"> </div>
+            </div> 
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                	<?php  echo $this->Form->input('charge_method', array('label' => 'チャージ提案方式', 'rows' => 4,'class' => 'form-control'));  ?>
                 </div>
             </div> 
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
-                	<?php  echo $this->Form->input('contract_refund_policy', array('label' => '返金規定', 'rows' => 2,'class' => 'form-control'));  ?>
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-10">
-                	<?php  echo $this->Form->input('contract_document', array('label' => '書類関係', 'rows' => 2,'class' => 'form-control'));  ?>
+                	<?php  echo $this->Form->input('contract_contents', array('label' => '契約内容', 'rows' => 4,'class' => 'form-control'));  ?>
                 </div>
             </div>  
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
-                	<?php  echo $this->Form->input('interview_information', array('label' => '面接情報', 'rows' => 2,'class' => 'form-control'));  ?>
+                	<?php  echo $this->Form->input('interview_selection_process', array('label' => '面接選考方法', 'rows' => 4,'class' => 'form-control'));  ?>
                 </div>
             </div>      
-            <div class="row">
-               <div class="col-xs-12">
-                  <kbd>その他・ご要望など</kbd>
-               </div>
-            <div>   
             
             <div class="row">
                <div class="col-xs-1"></div>
                <div class="col-xs-10">
-                 <?php  echo $this->Form->input('other', array('label' => '備考', 'class' => 'form-control'));  ?>
+                 <?php  echo $this->Form->input('other', array('label' => 'その他備考', 'class' => 'form-control'));  ?>
                </div>
             </div>
             

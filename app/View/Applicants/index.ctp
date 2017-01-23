@@ -30,14 +30,10 @@
          <?php echo $this->Form->input('employment_pattern', array('label' => false, 'class' => 'form-control', 
                'options' => 
                  array('' => '雇用形態を選んでください', 
-                    "常勤（夜勤有）" => "常勤（夜勤有）", 
-										"常勤（夜勤無）" => "常勤（夜勤無）", 
-										"非常勤" => "非常勤",
-										"夜勤常勤" => "夜勤常勤",
-										"夜勤アルバイト" => "夜勤アルバイト",
-										"派遣" => "派遣",
-										"応援" => "応援",
-										"その他" => "その他") )); ?>
+                    "正社員" => "正社員", 
+										"入社予定" => "入社予定", 
+										"8:00～17:00（19:00）" => "8:00～17:00（19:00）",
+										) )); ?>
       </div>
       
       <div class="col-xs-2">
@@ -85,6 +81,7 @@
         <th><?php echo $this->Paginator->sort('progress_status_id', 'ステータス'); ?></th>
         <th><?php echo $this->Paginator->sort('employment_pattern', '雇用形態'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', '担当者'); ?></th>
+        <th><?php echo $this->Paginator->sort('media_type_id', '媒体'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', 'メルマガ'); ?></th>
         <th><?php echo $this->Paginator->sort('created_at', '作成日'); ?></th>
         <th></th>
@@ -144,6 +141,25 @@
           ?>
           </td>
           
+          
+          <td class="<?php echo $val['Applicant']['status'];?>">
+          <?php
+          			echo $this->inPlaceEditing->input('Applicant', 'media_type_id', $val['Applicant']['id'],
+        				array('value' => $val['MediaType']['name'],
+              				'actionName' => Router::url(array('controller' => 'Applicants', 'action' => 'in_place_editing')),
+             		 		'type' => 'select',
+             		 		'selectOptions' => json_encode(array('') + $media_types),
+             		 		'selected' => $val['Applicant']['media_type_id'],
+              				'cancelText' => 'キャンセル',
+              				'submitText' => '保存',
+              				'toolTip' => 'クリックして編集する',
+             			 	'containerType' => 'label',
+             			 	'containerClass' => 'bg-warning ',
+              			)
+        			);
+          ?>
+          
+          </td>
           <td >
           <?php
           		
