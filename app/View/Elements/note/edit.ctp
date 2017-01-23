@@ -23,7 +23,7 @@
   <?php echo $this->html->link('<i class="glyphicon glyphicon-remove"></i>', array('controller' => 'notes', 'action' => 'delete', $val['id']), array('escape' => false, 'class' => 'btn btn-danger btn-xs', 'confirm' =>'削除してもよろしいですか？'))?>
 	<br>
 	<?php echo nl2br($val['remarks']) ?><br>
-	<?php if(!empty($institution_lists) && !empty($val['select_institution_id']) && $type == 'Applicant') echo '<p class="bg-danger"><abbr title="法人施設名">' . $this->Html->link($institution_lists[$val['select_institution_id']], array('controller' => 'institutions', 'action' => 'view', $val['select_institution_id']), array('target' => '_blank', 'style' => 'text-decoration:none;')) . "</abbr></p>";?>
+	<?php if(!empty($institution_lists) && !empty($val['select_institution_id']) && $type == 'Applicant') echo '<p class="bg-danger"><abbr title="企業名">' . $this->Html->link($institution_lists[$val['select_institution_id']], array('controller' => 'institutions', 'action' => 'view', $val['select_institution_id']), array('target' => '_blank', 'style' => 'text-decoration:none;')) . "</abbr></p>";?>
 
 <?php } ?>
 </div>	

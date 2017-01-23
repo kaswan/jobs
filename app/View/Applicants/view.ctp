@@ -1,6 +1,6 @@
 <div class="row">  
 	<div class="col-xs-1">
-  		<?php echo $this->html->link('求職者一覧へ', array('controller' => 'applicants', 'action' => 'index'), array('class' => 'btn btn-success', 'style' => 'width:140px;text-decoration:none;')); ?><br><br>
+  		<?php echo $this->html->link('技術者一覧へ', array('controller' => 'applicants', 'action' => 'index'), array('class' => 'btn btn-success', 'style' => 'width:140px;text-decoration:none;')); ?><br><br>
  		<?php echo $this->html->link('編集する', array('controller' => 'applicants', 'action' => 'edit', !empty($applicant) ? $applicant['Applicant']['id']: ''), array('class' => 'btn btn-warning', 'style' => 'width:140px;text-decoration:none;')); ?><br><br>
   		<?php echo $this->html->link('PDF出力', array('controller' => 'applicants', 'action' => 'print_view', !empty($applicant) ? $applicant['Applicant']['id']: ''), array('class' => 'btn btn-info ', 'target' => '_blank', 'style' => 'width:140px;text-decoration:none;')); ?><br><br>
   		

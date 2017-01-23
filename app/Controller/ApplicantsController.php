@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class ApplicantsController extends AppController {
 
 	public $uses = array('Applicant','Institution','WorkType','Prefecture', 'ProgressStatus', 'User', 
-			'WorkHistory', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType');
+			'WorkHistory', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType', 'Result');
 	public $components = array('Paginator','Mpdf', 'RequestHandler');
 	public $paginate = array();
 	
@@ -31,6 +31,13 @@ class ApplicantsController extends AppController {
 	    	Cache::write('lists', $progress_status, 'progress_status');
 	    }
 	    $this->set('statuses', $progress_status);
+	    
+	    $results = Cache::read('lists','results');
+	    if (!$results) {
+	    	$results = $this->Result->find('list',array('fields' => array('id', 'name')));
+	    	Cache::write('lists', $results, 'results');
+	    }
+	    $this->set('results', $results);
 	    
 	    $ranks = Cache::read('lists','ranks');
 	    if (!$ranks) {
@@ -333,8 +340,11 @@ class ApplicantsController extends AppController {
 					$status = $this->ProgressStatus->read(null, $value);
 					$this->set('updated_value', $status['ProgressStatus']['name']);
 				}elseif ($field == 'media_type_id'){
-					$medium = $this->MediaType->read(null, $value);
-					$this->set('updated_value', $medium['MediaType']['name']);
+					$media = $this->MediaType->read(null, $value);
+					$this->set('updated_value', $media['MediaType']['name']);
+				}elseif ($field == 'result_id'){
+					$result = $this->Result->read(null, $value);
+					$this->set('updated_value', $result['Result']['name']);
 				}elseif ($field == 'user_id'){
 					$user = $this->User->read(null, $value);
 					$this->set('updated_value', $user['User']['name']);

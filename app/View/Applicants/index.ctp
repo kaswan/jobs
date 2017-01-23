@@ -82,6 +82,7 @@
         <th><?php echo $this->Paginator->sort('employment_pattern', '雇用形態'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', '担当者'); ?></th>
         <th><?php echo $this->Paginator->sort('media_type_id', '媒体'); ?></th>
+        <th><?php echo $this->Paginator->sort('result_id', '採否'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', 'メルマガ'); ?></th>
         <th><?php echo $this->Paginator->sort('created_at', '作成日'); ?></th>
         <th></th>
@@ -158,9 +159,27 @@
               			)
         			);
           ?>
-          
           </td>
-          <td >
+          
+          <td class="<?php echo $val['Applicant']['status'];?>">
+          <?php
+          			echo $this->inPlaceEditing->input('Applicant', 'result_id', $val['Applicant']['id'],
+        				array('value' => $val['Result']['name'],
+              				'actionName' => Router::url(array('controller' => 'Applicants', 'action' => 'in_place_editing')),
+             		 		'type' => 'select',
+             		 		'selectOptions' => json_encode(array('') + $results),
+             		 		'selected' => $val['Applicant']['result_id'],
+              				'cancelText' => 'キャンセル',
+              				'submitText' => '保存',
+              				'toolTip' => 'クリックして編集する',
+             			 	'containerType' => 'label',
+             			 	'containerClass' => 'bg-warning ',
+              			)
+        			);
+          ?>
+          </td>
+          
+          <td>
           <?php
           		
           			echo $this->inPlaceEditing->input('Applicant', 'mail_magazine_subscription', $val['Applicant']['id'],
