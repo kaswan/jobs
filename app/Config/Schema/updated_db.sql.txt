@@ -1,0 +1,594 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- ホスト: 127.0.0.1
+-- 生成時間: 2017 年 1 月 23 日 18:19
+-- サーバのバージョン: 5.1.37
+-- PHP のバージョン: 5.3.0
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- データベース: `jobs_construction_development`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `applicants`
+--
+
+CREATE TABLE IF NOT EXISTS `applicants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial_number` varchar(100) NOT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL COMMENT 'お名前',
+  `furigana` varchar(100) DEFAULT NULL COMMENT 'ふりがな',
+  `gender` varchar(20) DEFAULT NULL COMMENT '性別',
+  `date_of_birth` date DEFAULT NULL COMMENT '生年月日',
+  `postalcode` varchar(20) DEFAULT NULL COMMENT '郵便番号',
+  `prefecture_id` int(11) DEFAULT NULL COMMENT '都道府県',
+  `address` varchar(255) DEFAULT NULL COMMENT '住所',
+  `house_address` varchar(255) DEFAULT NULL COMMENT '番地',
+  `nearest_station` varchar(255) DEFAULT NULL,
+  `tel` varchar(100) DEFAULT NULL COMMENT '携帯電話',
+  `tel_home` varchar(255) DEFAULT NULL COMMENT '固定電話',
+  `email` varchar(255) DEFAULT NULL COMMENT 'メールアドレス',
+  `email_mobile` varchar(255) DEFAULT NULL COMMENT '携帯メールアドレス',
+  `contact_time` varchar(255) DEFAULT NULL COMMENT '連絡時間帯',
+  `education` varchar(255) DEFAULT NULL COMMENT '最終学歴',
+  `year_of_experience` varchar(255) DEFAULT NULL COMMENT 'ご経験年数',
+  `desired_joining_time` varchar(255) DEFAULT NULL COMMENT '入職希望',
+  `employment_pattern` varchar(255) DEFAULT NULL COMMENT '就業形態',
+  `employment_pattern_remarks` varchar(500) DEFAULT NULL,
+  `business_trip_availability` varchar(255) DEFAULT NULL,
+  `night_shift_availability` varchar(255) DEFAULT NULL,
+  `places_of_employment` varchar(500) DEFAULT NULL COMMENT '就業場所',
+  `annual_income` varchar(255) DEFAULT NULL COMMENT '年収',
+  `holiday` varchar(255) DEFAULT NULL COMMENT '休日',
+  `working_hours` varchar(255) DEFAULT NULL COMMENT '勤務時間',
+  `commuting_time` varchar(255) DEFAULT NULL COMMENT '通勤時間',
+  `commuting` varchar(255) DEFAULT NULL COMMENT '交通',
+  `employment_status` varchar(255) DEFAULT NULL COMMENT '就業状況',
+  `desired_location_first_id` int(11) DEFAULT NULL COMMENT '希望勤務地１',
+  `desired_location_second_id` int(11) DEFAULT NULL COMMENT '希望勤務地１',
+  `qualification_year` varchar(255) DEFAULT NULL COMMENT '資格取得年',
+  `contract_document` text COMMENT '書類関係',
+  `desired_department` varchar(255) DEFAULT NULL COMMENT '希望部署',
+  `desired_working_days` varchar(255) DEFAULT NULL COMMENT '勤務日数',
+  `remarks` text COMMENT '備考',
+  `remarks_for_office_use` text,
+  `entry_sheet_remarks` text,
+  `work_type_id` int(4) DEFAULT NULL,
+  `status` enum('unread','read') DEFAULT 'unread',
+  `progress_status_id` int(2) DEFAULT NULL,
+  `rank_id` int(11) NOT NULL,
+  `media_type_id` int(11) DEFAULT NULL,
+  `institution_id` int(11) DEFAULT NULL COMMENT '法人施設番号',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `user_id` int(11) DEFAULT NULL,
+  `note_count` int(11) NOT NULL DEFAULT '0',
+  `upload_document_count` int(2) NOT NULL DEFAULT '0',
+  `post_id` int(11) DEFAULT NULL,
+  `mail_magazine_subscription` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'メルマガ希望',
+  `sort_modified_date` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `prefecture_id` (`prefecture_id`),
+  KEY `tel` (`tel`),
+  KEY `sort_modified_date` (`sort_modified_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `applicants`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `areas`
+--
+
+CREATE TABLE IF NOT EXISTS `areas` (
+  `id` int(2) NOT NULL,
+  `area_name` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='マスター　エリアデータ';
+
+--
+-- テーブルのデータをダンプしています `areas`
+--
+
+INSERT INTO `areas` (`id`, `area_name`) VALUES
+(1, '北海道・東北'),
+(2, '関東'),
+(3, '甲信越'),
+(4, '北陸'),
+(5, '東海'),
+(6, '近畿'),
+(7, '中国'),
+(8, '四国'),
+(9, '九州・沖縄');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `cake_sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `cake_sessions` (
+  `id` varchar(255) NOT NULL DEFAULT '',
+  `data` text,
+  `expires` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータをダンプしています `cake_sessions`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `contact_people`
+--
+
+CREATE TABLE IF NOT EXISTS `contact_people` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `institution_id` int(11) NOT NULL,
+  `department` varchar(255) DEFAULT NULL COMMENT '部署',
+  `area` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '担当者名',
+  `title` varchar(255) DEFAULT NULL COMMENT '役職名',
+  `direct_phone_number` varchar(255) DEFAULT NULL COMMENT '直通電話番号',
+  `email` varchar(255) DEFAULT NULL,
+  `intro` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `institution_id` (`institution_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `contact_people`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `institutions`
+--
+
+CREATE TABLE IF NOT EXISTS `institutions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `furigana` varchar(100) DEFAULT NULL,
+  `corporate_name` varchar(255) DEFAULT NULL COMMENT '法人名',
+  `corporate_furigana` varchar(255) DEFAULT NULL COMMENT '法人名 ふりがな',
+  `postalcode` varchar(50) DEFAULT NULL,
+  `prefecture_id` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `nearest_station` varchar(255) DEFAULT NULL COMMENT '最寄駅',
+  `tel` varchar(50) DEFAULT NULL,
+  `fax` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `specialty_area` varchar(255) DEFAULT NULL,
+  `designated_invoice` varchar(255) DEFAULT NULL,
+  `company_code` varchar(255) DEFAULT NULL,
+  `mobile_loan` varchar(255) DEFAULT NULL,
+  `transportation_expenses` varchar(255) DEFAULT NULL,
+  `accommodation_contract` varchar(255) DEFAULT NULL,
+  `cad` varchar(255) DEFAULT NULL,
+  `important_point` varchar(255) DEFAULT NULL,
+  `proposal_for_over_60` varchar(255) DEFAULT NULL,
+  `proposal_for_inexperienced` varchar(255) DEFAULT NULL,
+  `proposed_engineer` text,
+  `other_remarks` text,
+  `classification` varchar(255) DEFAULT NULL COMMENT '区分',
+  `clinical_departments` varchar(255) DEFAULT NULL COMMENT '科目',
+  `number_of_beds` varchar(255) DEFAULT NULL COMMENT '病床数',
+  `nursing_standards` varchar(255) DEFAULT NULL COMMENT '看護基準',
+  `number_of_users` varchar(255) DEFAULT NULL COMMENT '利用者数',
+  `expected_annual_income` varchar(255) DEFAULT NULL COMMENT '想定年収',
+  `agreement_date` date DEFAULT NULL COMMENT '契約締結年月',
+  `charge_method` text COMMENT 'チャージ提案方式',
+  `contract_contents` text COMMENT '契約内容',
+  `interview_selection_process` text COMMENT '面接選考方法',
+  `other` text COMMENT '備考欄（文字制限無し）',
+  `contact_person_count` int(5) NOT NULL DEFAULT '0',
+  `applicant_count` int(5) NOT NULL DEFAULT '0',
+  `note_count` int(11) NOT NULL DEFAULT '0',
+  `upload_document_count` int(2) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- テーブルのデータをダンプしています `institutions`
+--
+
+INSERT INTO `institutions` (`id`, `name`, `furigana`, `corporate_name`, `corporate_furigana`, `postalcode`, `prefecture_id`, `address`, `nearest_station`, `tel`, `fax`, `email`, `url`, `specialty_area`, `designated_invoice`, `company_code`, `mobile_loan`, `transportation_expenses`, `accommodation_contract`, `cad`, `important_point`, `proposal_for_over_60`, `proposal_for_inexperienced`, `proposed_engineer`, `other_remarks`, `classification`, `clinical_departments`, `number_of_beds`, `nursing_standards`, `number_of_users`, `expected_annual_income`, `agreement_date`, `charge_method`, `contract_contents`, `interview_selection_process`, `other`, `contact_person_count`, `applicant_count`, `note_count`, `upload_document_count`, `deleted`, `created_at`, `updated_at`) VALUES
+(1, 'あああああああ', 'ああああああ', NULL, NULL, '1840012', 13, '小金井市中町', 'ああああ', '134345345345', '43543534534', 'aaaaaaaaa@dddd.cc', '', 'dfgdf', 'gfdgdf', 'ああああ', 'ああああｄｄｄｄ', 'ええええ', 'ううううう', 'れれれｒ', 'れれｒ', 'れええええええええええ', 'うぇうぇうぇｗ', 'えうぇうぇ', 'うぇうぇうぇ', NULL, NULL, NULL, NULL, NULL, NULL, '2010-11-17', 'うぇえうぇうぇ', 'うぇｒうぇｒうぇ', 'ｒうぇｒうぇ', 'ｒうぇｒうぇｒうぇｒ', 2, 0, 0, 0, 0, '2017-01-23 18:02:07', '2017-01-23 18:01:43'),
+(2, 'AAAAAAAAAAA', 'ああああああ', NULL, NULL, '1840012', 13, '小金井市中町', 'ああああ', '134345345345', '43543534534', 'aaaaaaaaa@dddd.cc', '', 'dfgdf', 'gfdgdf', 'ああああ', 'ああああｄｄｄｄ', 'ええええ', 'ううううう', 'れれれｒ', 'れれｒ', 'れええええええええええ', 'うぇうぇうぇｗ', 'えうぇうぇ', 'うぇうぇうぇ', NULL, NULL, NULL, NULL, NULL, NULL, '2010-11-17', 'うぇえうぇうぇ', 'うぇｒうぇｒうぇ', 'ｒうぇｒうぇ', 'ｒうぇｒうぇｒうぇｒ', 2, 0, 0, 0, 0, '2017-01-23 18:04:00', '2017-01-23 18:13:23');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `mail_magazines`
+--
+
+CREATE TABLE IF NOT EXISTS `mail_magazines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `options` text NOT NULL,
+  `responses` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `mail_magazines`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `media_types`
+--
+
+CREATE TABLE IF NOT EXISTS `media_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- テーブルのデータをダンプしています `media_types`
+--
+
+INSERT INTO `media_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'JC', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(2, '紹介', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(3, '退職者', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(4, 'ハロワ', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(5, 'ワークス', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(6, '営業', '2017-01-23 13:39:58', '2017-01-23 13:39:58');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `notes`
+--
+
+CREATE TABLE IF NOT EXISTS `notes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `target_id` int(11) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `remarks` text NOT NULL,
+  `select_institution_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `target_id` (`target_id`,`type`,`date_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `notes`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `prefectures`
+--
+
+CREATE TABLE IF NOT EXISTS `prefectures` (
+  `id` int(4) NOT NULL DEFAULT '0' COMMENT '都道府県ID',
+  `ken_name` varchar(32) NOT NULL COMMENT '県名',
+  `division` varchar(4) NOT NULL COMMENT '都道府県',
+  `prefecture_name` varchar(32) NOT NULL,
+  `area_id` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='マスター　都道府県情報';
+
+--
+-- テーブルのデータをダンプしています `prefectures`
+--
+
+INSERT INTO `prefectures` (`id`, `ken_name`, `division`, `prefecture_name`, `area_id`) VALUES
+(1, '北海道', '', '北海道', 1),
+(2, '青森', '県', '青森県', 1),
+(3, '岩手', '県', '岩手県', 1),
+(4, '宮城', '県', '宮城県', 1),
+(5, '秋田', '県', '秋田県', 1),
+(6, '山形', '県', '山形県', 1),
+(7, '福島', '県', '福島県', 1),
+(8, '茨城', '県', '茨城県', 2),
+(9, '栃木', '県', '栃木県', 2),
+(10, '群馬', '県', '群馬県', 2),
+(11, '埼玉', '県', '埼玉県', 2),
+(12, '千葉', '県', '千葉県', 2),
+(13, '東京', '都', '東京都', 2),
+(14, '神奈川', '県', '神奈川県', 2),
+(15, '山梨', '県', '山梨県', 3),
+(16, '長野', '県', '長野県', 3),
+(17, '新潟', '県', '新潟県', 3),
+(18, '富山', '県', '富山県', 4),
+(19, '石川', '県', '石川県', 4),
+(20, '福井', '県', '福井県', 4),
+(21, '岐阜', '県', '岐阜県', 5),
+(22, '静岡', '県', '静岡県', 5),
+(23, '愛知', '県', '愛知県', 5),
+(24, '三重', '県', '三重県', 5),
+(25, '滋賀', '県', '滋賀県', 6),
+(26, '京都', '府', '京都府', 6),
+(27, '大阪', '府', '大阪府', 6),
+(28, '兵庫', '県', '兵庫県', 6),
+(29, '奈良', '県', '奈良県', 6),
+(30, '和歌山', '県', '和歌山県', 6),
+(31, '鳥取', '県', '鳥取県', 7),
+(32, '島根', '県', '島根県', 7),
+(33, '岡山', '県', '岡山県', 7),
+(34, '広島', '県', '広島県', 7),
+(35, '山口', '県', '山口県', 7),
+(36, '徳島', '県', '徳島県', 8),
+(37, '香川', '県', '香川県', 8),
+(38, '愛媛', '県', '愛媛県', 8),
+(39, '高知', '県', '高知県', 8),
+(40, '福岡', '県', '福岡県', 9),
+(41, '佐賀', '県', '佐賀県', 9),
+(42, '長崎', '県', '長崎県', 9),
+(43, '熊本', '県', '熊本県', 9),
+(44, '大分', '県', '大分県', 9),
+(45, '宮崎', '県', '宮崎県', 9),
+(46, '鹿児島', '県', '鹿児島県', 9),
+(47, '沖縄', '県', '沖縄県', 9),
+(48, 'その他', '', 'その他', 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `progress_statuses`
+--
+
+CREATE TABLE IF NOT EXISTS `progress_statuses` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- テーブルのデータをダンプしています `progress_statuses`
+--
+
+INSERT INTO `progress_statuses` (`id`, `name`, `deleted`, `created_at`, `updated_at`) VALUES
+(1, '派遣', 0, '2015-07-06 00:00:00', '2017-01-23 14:26:27'),
+(2, '紹介', 0, '2015-07-06 00:00:00', '2017-01-23 14:26:27'),
+(3, '退職', 0, '0000-00-00 00:00:00', '2015-07-12 08:57:49'),
+(4, '他決', 0, '2015-07-06 00:00:00', '2017-01-23 14:26:27'),
+(5, '入社', 0, '2015-09-09 17:51:54', '2017-01-23 14:27:03'),
+(6, '不採用', 0, '2017-01-23 14:27:00', '2017-01-23 14:27:03');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `qualifications`
+--
+
+CREATE TABLE IF NOT EXISTS `qualifications` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `is_other` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- テーブルのデータをダンプしています `qualifications`
+--
+
+INSERT INTO `qualifications` (`id`, `name`, `is_other`, `created_at`, `updated_at`) VALUES
+(1, '一級建築施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(2, '二級建築施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(3, '一級土木施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(4, '二級土木施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(5, '一級電気工事施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(6, '二級電気工事施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(7, '一級管工事施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(8, '二級管工事施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(9, '一級造園施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(10, '二級造園施工管理技士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(11, '測量士補', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15'),
+(12, '測量士', 0, '2017-01-23 13:35:09', '2017-01-23 13:35:15');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `qualification_histories`
+--
+
+CREATE TABLE IF NOT EXISTS `qualification_histories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicant_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '資格名',
+  `year` varchar(255) DEFAULT NULL COMMENT '取得年',
+  `month` varchar(255) DEFAULT NULL COMMENT '取得月',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `applicant_id` (`applicant_id`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `qualification_histories`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `ranks`
+--
+
+CREATE TABLE IF NOT EXISTS `ranks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- テーブルのデータをダンプしています `ranks`
+--
+
+INSERT INTO `ranks` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'S(一級)', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(2, 'A(二級)', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(3, 'B(資格無し経験者)', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(4, 'C(ブランク有り経験者)', '2017-01-23 13:39:58', '2017-01-23 13:39:58'),
+(5, 'D(未経験)', '2017-01-23 13:39:58', '2017-01-23 13:39:58');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `upload_documents`
+--
+
+CREATE TABLE IF NOT EXISTS `upload_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `target_id` int(11) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `document` varchar(255) DEFAULT NULL,
+  `document_dir` varchar(255) DEFAULT NULL,
+  `document_type` varchar(255) DEFAULT NULL,
+  `document_size` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `target_id` (`target_id`,`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `upload_documents`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_number` int(11) DEFAULT NULL COMMENT '社員番号',
+  `name` varchar(255) DEFAULT NULL COMMENT '担当者名',
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','member') NOT NULL DEFAULT 'member',
+  `ip_address` varchar(100) DEFAULT NULL,
+  `applicant_count` int(11) NOT NULL DEFAULT '0',
+  `password_reset_token` varchar(255) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`,`role`,`deleted`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- テーブルのデータをダンプしています `users`
+--
+
+INSERT INTO `users` (`id`, `employee_number`, `name`, `username`, `email`, `password`, `role`, `ip_address`, `applicant_count`, `password_reset_token`, `deleted`, `created_at`, `updated_at`) VALUES
+(1, 1002, 'カスワン', 'kaswan', 'kaswan@broz.jp', '$2a$10$7tO/oJ0AxWaZTwao5ENTKeUlvc/oeKu0hNr4.7ikEuy3hkTGen/am', 'admin', NULL, 0, '5d974759f55640de6029b8f2171010978f6', 0, '0000-00-00 00:00:00', '2017-01-23 16:55:09'),
+(2, 1003, '宮崎', 'broz', 'aki@broz.jp', '$2a$10$rVAcrQGrqowEGe2mJPvPou1pkIrKKxDipSEVQ4dwr/mwfKG4Rprby', 'member', NULL, 1, NULL, 0, '2014-08-11 16:58:25', '2015-07-13 23:25:08'),
+(6, 1, '宇佐美 彰規', 'ausami', 'a-usami@medical-jobs.co.jp', '$2a$10$dEsQoH2uIFGpuEY7RfnrKujaK9InFcj2skXpXjym1pdkpnQt5z.uK', 'admin', NULL, 212, NULL, 0, '2015-06-07 20:15:36', '2017-01-10 15:37:43'),
+(7, 2, '宇佐美　加奈子', 'kusami', 'k-usami@medical-jobs.co.jp', '$2a$10$RR6BO3pfiCOjkG0s7M0s/.xJd7wEzYj69NVU9BLyDAG89Kb.hxNNq', 'admin', NULL, 1, 'ddffd246ceff9fb1512e9f13e1a50b48df6', 0, '2015-07-18 14:14:46', '2016-06-23 14:59:35'),
+(8, 3, '花谷　香織', 'khanatani', 'h-hanatani@medical-jobs.co.jp', '$2a$10$XZPb6ziguE2cShPlRI22GuMTXDUrDnFb/HNUAxnFjdruZFNA3ag4.', 'member', NULL, 0, NULL, 0, '2015-07-18 14:18:06', '2017-01-23 16:56:26'),
+(13, 9999, '退職者', 'jobskun', 'eigyo@medical-jobs.co.jp', '', 'member', NULL, 9, NULL, 0, '2015-09-02 09:30:25', '2016-12-02 08:52:37'),
+(10, 4, '蔭山　昌司', 'akageyama', 'a-kageyama@medical-jobs.co.jp', '', 'member', NULL, 1, NULL, 0, '2015-07-22 19:06:28', '2016-12-20 17:22:07'),
+(15, 6, '新藤　孝浩', 'tshindo', 't-shindo@medical-jobs.co.jp', '$2a$10$kwie98XO5c/El3rTdzrvh.SzWzq1K3hXV.t803hbzvZr2eLtBwTxq', 'member', NULL, 1, NULL, 0, '2015-12-03 20:44:53', '2017-01-23 16:56:26'),
+(16, 7, '徳丘　瑞生', 'mtokuoka', 'm-tokuoka@jobs-c.com', '', 'member', NULL, 0, NULL, 0, '2015-12-16 15:52:57', '2016-10-26 13:47:49'),
+(17, 8, '中島　良治', 'ynakajima', 'y-nakajima@medical-jobs.co.jp', '', 'member', NULL, 8, NULL, 0, '2016-05-31 18:35:19', '2016-06-02 09:35:11'),
+(18, 9, '菊地　智巳', 'tkikuchi', 't-kikuchi@medical-jobs.co.jp', '$2a$10$Ofl.CbTg6mWY6fveBnh80uaPfMkeObEHutT/pZzbRcO3Gn0uOfD0q', 'member', NULL, 182, NULL, 0, '2016-08-29 14:29:43', '2017-01-13 09:34:23'),
+(19, 10, '荒井（転職スクエア）', 'jarai', 'square-job@medical-jobs.co.jp', '', 'member', NULL, 88, NULL, 0, '2016-09-02 09:44:24', '2017-01-10 12:15:12'),
+(20, 5, '坪谷　和香', 'ntsuboya', 'n-tsuboya@medical-jobs.co.jp', '$2a$10$8RbuTLxCHiLpGH/Ysu2IBOMfiHa4Ez2YdWr6h302Owfb16FBCWk6O', 'member', NULL, 0, NULL, 0, '2016-11-25 13:50:33', '2016-12-15 12:58:47');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `work_histories`
+--
+
+CREATE TABLE IF NOT EXISTS `work_histories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicant_id` int(11) NOT NULL,
+  `text_field_1` varchar(255) DEFAULT NULL,
+  `text_field_2` varchar(255) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL COMMENT '勤務先名称',
+  `short_name` varchar(255) DEFAULT NULL,
+  `department_name` varchar(255) DEFAULT NULL COMMENT '部署',
+  `discipline` varchar(255) DEFAULT NULL COMMENT '科目',
+  `employment_pattern` varchar(255) DEFAULT NULL COMMENT '雇用形態',
+  `enrollment_year` varchar(255) DEFAULT NULL COMMENT '在籍年',
+  `business_id` int(11) DEFAULT NULL COMMENT '職歴施設ID',
+  `service_period_id` int(11) DEFAULT NULL COMMENT '職歴年数ID',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `applicant_id` (`applicant_id`,`business_id`,`service_period_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `work_histories`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `work_types`
+--
+
+CREATE TABLE IF NOT EXISTS `work_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `sort_no` smallint(4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `sort_no` (`sort_no`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `work_types`
+--
+
