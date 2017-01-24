@@ -34,8 +34,7 @@
     <thead>
       <tr>
         <th><?php echo $this->Paginator->sort('id', 'No.'); ?></th>  
-        <th><?php echo $this->Paginator->sort('corporate_name', '法人名'); ?></th>      
-        <th><?php echo $this->Paginator->sort('name', '名称'); ?></th>
+        <th><?php echo $this->Paginator->sort('name', '法人名'); ?></th>      
         <th><?php echo $this->Paginator->sort('prefecture_id', '都道府県'); ?></th>
         <th>TEL</th>
         <th>Email</th>
@@ -47,8 +46,7 @@
       </tr>
       <?php foreach($institutions as $id => $val){ ?>
         <tr >
-          <td ><?php echo $val['Institution']['id'];?></td>          
-          <td ><?php echo $val['Institution']['corporate_name'];?></td>
+          <td ><?php echo $val['Institution']['id'];?></td>
           <td ><?php echo $val['Institution']['name'];?></td>
           <td ><?php if($val['Institution']['prefecture_id'] > 0 )echo $prefectures[$val['Institution']['prefecture_id']];?></td>
           <td ><?php echo $val['Institution']['tel'];?></td>

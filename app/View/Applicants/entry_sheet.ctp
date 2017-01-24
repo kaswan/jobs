@@ -1,5 +1,18 @@
 <style>
 
+.square {
+  width: 25px;
+  height: 25px;
+  float: right;
+  text-align: center;
+  padding: 2px 4px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #7b7676;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
 kbd {
 padding: 2px 4px;
 font-size: 100%;

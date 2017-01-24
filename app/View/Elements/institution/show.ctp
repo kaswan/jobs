@@ -10,7 +10,7 @@
     <tbody>
       
       <tr>
-        <td width="200px"><b>お名前</b></td>
+        <td width="200px"><b>法人名</b></td>
         <td><span style="float:left;width:80%;"><?php echo $institution['Institution']['name'] ?></span></td>
       </tr>
       <tr>
@@ -51,6 +51,7 @@
       <tr>
         <th><kbd>業種</kbd></th>
         <th><kbd>エリア</kbd></th>
+        <th><kbd>部署</kbd></th>
         <th><kbd>役職</kbd></th>
         <th><kbd>名前</kbd></th>        
         <th><kbd>番号</kbd></th>
@@ -62,10 +63,11 @@
     <tbody>
      <?php foreach($institution['ContactPerson'] as $contact) {?>
         <tr>
-        	<td><?php echo($contact['department'])?></td>
+        	<td><?php echo($contact['industry'])?></td>
         	<td><?php echo($contact['area'])?></td>
-        	<td><?php echo($contact['name'])?></td>
+        	<td><?php echo($contact['department'])?></td>
         	<td><?php echo($contact['title'])?></td>
+        	<td><?php echo($contact['name'])?></td>        	
         	<td><?php echo($contact['direct_phone_number'])?></td>
         	<td><?php echo($contact['email'])?></td>
         	<td><?php echo($contact['intro'])?></td>

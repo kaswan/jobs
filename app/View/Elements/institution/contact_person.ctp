@@ -4,17 +4,24 @@ $key = isset($key) ? $key : '<%= key %>';
 <tr>
     <td>
     	<?php echo $this->Form->hidden("ContactPerson.{$key}.id") ?>
-        <?php echo $this->Form->text("ContactPerson.{$key}.department", array('size' => '10px', 'class' => 'form-control')); ?>
+        <?php echo $this->Form->text("ContactPerson.{$key}.industry", array('size' => '10px', 'class' => 'form-control')); ?>
     </td>
     <td>
         <?php echo $this->Form->text("ContactPerson.{$key}.area", array('size' => '10px', 'class' => 'form-control')); ?>
     </td>
     <td>
-        <?php echo $this->Form->text("ContactPerson.{$key}.name", array('size' => '10px', 'class' => 'form-control')); ?>
+    	<?php echo $this->Form->hidden("ContactPerson.{$key}.id") ?>
+        <?php echo $this->Form->text("ContactPerson.{$key}.department", array('size' => '10px', 'class' => 'form-control')); ?>
     </td>
+    
     <td>
         <?php echo $this->Form->text("ContactPerson.{$key}.title", array('size' => '15px', 'class' => 'form-control')); ?>
     </td>
+    
+    <td>
+        <?php echo $this->Form->text("ContactPerson.{$key}.name", array('size' => '10px', 'class' => 'form-control')); ?>
+    </td>
+    
     <td>
         <?php echo $this->Form->text("ContactPerson.{$key}.direct_phone_number", array('size' => '15px', 'class' => 'form-control js-characters-change')); ?>
     </td>

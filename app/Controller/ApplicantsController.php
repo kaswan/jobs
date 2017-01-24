@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class ApplicantsController extends AppController {
 
 	public $uses = array('Applicant','Institution','WorkType','Prefecture', 'ProgressStatus', 'User', 
-			'WorkHistory', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType', 'Result');
+			'WorkHistory', 'WorkSkill', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType', 'Result');
 	public $components = array('Paginator','Mpdf', 'RequestHandler');
 	public $paginate = array();
 	

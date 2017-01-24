@@ -80,6 +80,7 @@
                            <tr>
                               <th>業種</th>
                               <th>エリア</th>
+                              <th>部署</th>
                               <th>役職</th>
                               <th>名前</th>
                               <th>番号</th>
@@ -97,7 +98,7 @@
                         </tbody>
                         <tfoot>
                            <tr>
-                              <td colspan="7"></td>
+                              <td colspan="8"></td>
                               <td><a href="#" class="add btn-success btn-xs">追加</a></td>
                            </tr>
                         </tfoot>

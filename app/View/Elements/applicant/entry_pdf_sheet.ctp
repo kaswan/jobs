@@ -51,75 +51,36 @@
   <table>
     <thead>
       <tr>
-        <th><kbd>勤務先名称</kbd></th>
-        <th><kbd>部署</kbd></th>
-        <th><kbd>科目</kbd></th>
-        <th><kbd>雇用形態</kbd></th>
-        <th><kbd>在籍年</kbd></th>   
+        <th colspan="13"><kbd> 業務能力</kbd></th>      
       </tr>
     </thead>
-    
+        
+    <tbody>
+     <?php foreach($applicant['WorkSkill'] as $skill) {?>
+        <?php echo $this->element('applicant/skill_view_pdf', array('skill' => $skill));?>
+        
+     <?php } ?>     
+    </tbody>
+  </table>   
+  
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2"><kbd> 経歴</kbd></th>      
+      </tr>
+    </thead>
+        
     <tbody>
      <?php foreach($applicant['WorkHistory'] as $work) {?>
         <tr>
-        	<td><?php echo($work['short_name'])?></td>
-        	<td><?php echo($work['department_name'])?></td>
-        	<td><?php echo($work['discipline'])?></td>
-        	<td><?php echo($work['employment_pattern'])?></td>
-        	<td><?php echo($work['enrollment_year'])?></td>
+        	<td><?php echo($work['text_field_1'])?></td>
+        	<td><?php echo($work['text_field_2'])?></td>        	
         </tr>
         
      <?php } ?>     
     </tbody>
-  </table> 
+  </table>  
   
-   <table>
-    <thead>
-      <tr>
-        <th colspan="2"><kbd>希望条件</kbd></th>      
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr>
-        <td width="150px"><b>勤務形態</b></td>
-        <td><?php echo $applicant['Applicant']['employment_pattern'] ?></td>
-      </tr>
-      <tr>
-        <td width="150px"><b>希望転職時期</b></td>
-        <td><?php echo $applicant['Applicant']['desired_joining_time'] ?></td>
-      </tr>
-      
-      <tr>
-        <td width="150px"><b>希望部署</b></td>
-        <td><?php echo $applicant['Applicant']['desired_department'] ?></td>
-      </tr>
-      
-      
-      <tr>
-        <td width="150px"><b>希望休日</b></td>
-        <td><?php echo $applicant['Applicant']['holiday'] ?></td>
-      </tr>
-      <tr>
-        <td width="150px"><b>勤務日数</b></td>
-        <td><?php echo $applicant['Applicant']['desired_working_days'] ?></td>
-      </tr>
-      
-      <tr>
-        <td width="150px"><b>希望勤務時間</b></td>
-        <td><?php echo $applicant['Applicant']['working_hours'] ?></td>
-      </tr>
-      
-      <tr>
-        <td width="150px"><b>希望通勤時間</b></td>
-        <td><?php echo $applicant['Applicant']['commuting_time'] ?></td>
-      </tr>
-      <tr>
-        <td width="150px"><b>交通</b></td>
-        <td><?php echo $applicant['Applicant']['commuting'] ?></td>
-      </tr>
-    </tbody>
-  </table>
   <?php if(!empty($applicant['Applicant']['entry_sheet_remarks'])) { ?>
   <table>
     <thead>
@@ -139,11 +100,12 @@
 <br>
 
 <div style="width:520px;float:right;">
-メディカルジョブズ<br>
-〒１０１－００５２ 東京都千代田区神田小川町２－３－１３ M＆Cビル２階<br>
-TEL： ０３－５５７７－８００１　FAX： ０３－５５７７－８００２<br>
+ジョブズコンストラクション<br>
+〒101-0052																							
+東京都千代田区小川町2-3-13　M&Cビル2階<br>																																				
+TEL　03-5577-8000　FAX　03-5577-8002<br>
 担当者： <?php echo $applicant['User']['name']?>
 </div>
 <div style="width:100px;float:right;">
-<?php echo $this->Html->image('logo.jpeg', array('width' => '75'))?>
+<?php echo $this->Html->image('cake.logo.png', array('width' => '100'))?>
 </div>

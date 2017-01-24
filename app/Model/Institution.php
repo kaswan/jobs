@@ -21,7 +21,7 @@ class Institution extends AppModel {
 	
 	
 	public $virtualFields = array(
-			'freeword' => 'CONCAT(Institution.name, Institution.furigana, Institution.corporate_name, Institution.corporate_furigana, Institution.address, Institution.nearest_station, Institution.other, Institution.id)',
+			'freeword' => 'CONCAT(Institution.name, Institution.furigana, Institution.address, Institution.nearest_station, Institution.other, Institution.id)',
 			'phone' =>   'REPLACE(Institution.tel,"-","")',
 	);
 	

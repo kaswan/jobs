@@ -127,16 +127,17 @@
                </div>
             </div>
                         
-            <div class="row">
-               <div class="col-xs-12">
+          <div class="row">
+             <div class="col-xs-12">
 	               <legend>最終学歴</legend>
 	           </div>
-	        </div>       
+	        </div>
+	        
 	        <div class="row">
-               <div class="col-xs-12">
+             <div class="col-xs-12">
                <?php echo $this->Form->input('education', array('label' => false, 'class' => 'form-control')); ?>
-               </div>
-            </div>
+             </div>
+          </div>
                
             <div class="row">
                <div class="col-xs-12">
@@ -232,6 +233,35 @@
                   </script>
                </div>
             </div>
+            
+            <div class="row">   
+               <div class="col-xs-12">
+                  <fieldset>
+                     <legend>業務能力</legend>
+                     <table id="skill-table">
+                        
+                        <tbody>
+                           <?php if (!empty($this->request->data['WorkSkill'])) :?>
+                              <?php for ($key = 0; $key < count($this->request->data['WorkSkill']); $key++) :?>
+                                 <?php echo $this->element('applicant/skill', array('key' => $key));?>
+                              <?php endfor;?>
+                           <?php endif;?>
+                        </tbody>
+                        <tfoot>
+                           <tr>
+                              <td colspan="2"></td>
+                              <td><a href="#" class="add"></a></td>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </fieldset>
+                  <script id="skill-template" type="text/x-underscore-template">
+                     <?php echo $this->element('applicant/skill');?>
+                  </script>
+               </div>
+            </div>
+            
+            
 
             <div class="row">   
                <div class="col-xs-12">
@@ -348,6 +378,42 @@ $(document).ready(function() {
         }
 });
 </script>
+
+
+
+<script>
+$(document).ready(function() {
+    var
+        skillTable = $('#skill-table'),
+        skillBody = skillTable.find('tbody'),
+        skillTemplate = _.template($('#skill-template').remove().text()),
+        numberRows = skillTable.find('tbody > tr').length;
+
+    skillTable
+        .on('click', 'a.add', function(e) {
+            e.preventDefault();
+
+            $(skillTemplate({key: numberRows++}))
+                .hide()
+                .appendTo(skillBody)
+                .fadeIn('fast');
+        })
+        .on('click', 'a.remove', function(e) {
+                e.preventDefault();
+
+            $(this)
+                .closest('tr')
+                .fadeOut('fast', function() {
+                    $(this).remove();
+                });
+        });
+
+        if (numberRows === 0) {
+            skillTable.find('a.add').click();
+        }
+});
+</script>
+
 
 
 <script>

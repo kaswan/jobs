@@ -90,3 +90,8 @@ p.error em {
 .success {
 	color: #fff;
 }
+
+.modal-header { 
+    background-color: #084B8A !important;
+    color: #FFF;
+}

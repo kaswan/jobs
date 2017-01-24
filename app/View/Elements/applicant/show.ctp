@@ -134,6 +134,24 @@
      <?php } ?>     
     </tbody>
   </table> 
+  
+  
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="7"><kbd> 業務能力</kbd></th>      
+      </tr>
+    </thead>
+        
+    <tbody>
+     <?php foreach($applicant['WorkSkill'] as $skill) {?>
+        <?php echo $this->element('applicant/skill_view', array('skill' => $skill));?>
+        
+     <?php } ?>     
+    </tbody>
+  </table> 
+  
   <br>
   <table>
     <thead>
