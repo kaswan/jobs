@@ -1,9 +1,9 @@
 <?php if(!empty($applicant)){ ?>
-  <pre><span style="float:left;margin:5px;">ES-<?php echo $applicant['Applicant']['id']?></span></pre>
+  <pre><span style="float:left;margin:5px;font-size:20px;">No. <?php echo $applicant['Applicant']['id']?></span></pre>
   <table >
     <thead>
       <tr>
-        <th colspan="3"><kbd>基本情報</kbd></th>      
+        <th colspan="3"><kbd>基本情報</kbd><abbr title="ランク"><label class='label label-green'><?php echo $applicant['Rank']['name']?></label></abbr></th>      
       </tr>
     </thead>
     

@@ -24,8 +24,10 @@
 
     <div class="col-xs-7">
 		<div class="users form">
-			<abbr title="ステータス"><label class='label label-danger'><?php echo $applicant['ProgressStatus']['name']?></label></abbr>
-			<abbr title="法人施設名"><label class='label label-warning'><?php echo $applicant['Institution']['name']?></label></abbr>			
+			<abbr title="ステータス"><label class='label label-danger'><?php echo $applicant['ProgressStatus']['name']?></label></abbr>			
+			<abbr title="採否"><label class='label label-info'><?php echo $applicant['Result']['name']?></label></abbr>
+			<abbr title="媒体"><label class='label label-default'><?php echo $applicant['MediaType']['name']?></label></abbr>			
+			<abbr title="企業名"><label class='label label-warning'><?php echo $applicant['Institution']['name']?></label></abbr>			
 			<?php echo $this->element('applicant/show',array('applicant' => $applicant)); ?>
 		</div>
 	</div>
