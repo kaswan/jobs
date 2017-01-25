@@ -1,5 +1,5 @@
 <?php if(!empty($applicant)){ ?>
-  <pre style="padding:5px;"><span style="float:left;margin:5px;font-size:20px;">ES-<?php echo $applicant['Applicant']['id']?></span></pre>
+  <pre style="padding:5px;"><span style="float:left;margin:5px;font-size:20px;">No. <?php echo $applicant['Applicant']['id']?></span></pre>
   <table >
     <thead>
       <tr>
