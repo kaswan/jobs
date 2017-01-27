@@ -83,8 +83,9 @@ p {
 #header h1 {
 	line-height:20px;
 	background: #084B8A url('../img/cake.icon.png') no-repeat left;
+	background-size: 30px 20px;
 	color: #fff;
-	padding: 0px 30px;
+	padding: 0px 34px;
 }
 #header h1 a {
 	color: #fff;
