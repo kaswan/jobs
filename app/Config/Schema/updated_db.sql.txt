@@ -1,11 +1,9 @@
- サーバ: 127.0.0.1  -   データベース: jobs_construction_development
- 
 -- phpMyAdmin SQL Dump
 -- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- ホスト: 127.0.0.1
--- 生成時間: 2017 年 1 月 27 日 17:41
+-- 生成時間: 2017 年 1 月 27 日 17:45
 -- サーバのバージョン: 5.1.37
 -- PHP のバージョン: 5.3.0
 
@@ -90,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `applicants` (
 
 INSERT INTO `applicants` (`id`, `serial_number`, `nickname`, `name`, `furigana`, `gender`, `date_of_birth`, `postalcode`, `prefecture_id`, `address`, `house_address`, `nearest_station`, `tel`, `tel_home`, `email`, `email_mobile`, `contact_time`, `education`, `year_of_experience`, `desired_joining_time`, `employment_pattern`, `employment_pattern_remarks`, `business_trip_availability`, `night_shift_availability`, `places_of_employment`, `annual_income`, `holiday`, `working_hours`, `commuting_time`, `commuting`, `employment_status`, `desired_location_first_id`, `desired_location_second_id`, `qualification_year`, `contract_document`, `desired_department`, `desired_working_days`, `remarks`, `remarks_for_office_use`, `entry_sheet_remarks`, `work_type_id`, `status`, `progress_status_id`, `rank_id`, `media_type_id`, `institution_id`, `result_id`, `deleted`, `user_id`, `note_count`, `upload_document_count`, `post_id`, `mail_magazine_subscription`, `sort_modified_date`, `created_at`, `updated_at`) VALUES
 (10001, NULL, 'S.H', 'シゲヒサ　ヒロキ', 'シゲヒサ　ヒロキ', '男', '0000-00-00', '', 0, '', '', '', '9041728611', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '接客業経験あり。時間が掛かりすぎて本人辞退', '', NULL, NULL, 'read', 10, 5, 1, NULL, 0, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:08:57'),
-(10002, NULL, 'S.M', 'シタクボ　マサハル', 'シタクボ　マサハル', '男', NULL, '', NULL, '', '', '', '9054466407', '', '', '', NULL, '', NULL, '', '', NULL, '', '', NULL, NULL, NULL, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '癖が強そう', '', '', 0, 'read', NULL, 5, 1, NULL, 8, 0, NULL, 0, 3, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-27 15:49:26'),
+(10002, NULL, 'S.M', 'シタクボ　マサハル', 'シタクボ　マサハル', '男', NULL, '', NULL, '', '', '', '9054466407', '', '', '', NULL, '', NULL, '', '', NULL, '', '', NULL, NULL, NULL, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '癖が強そう', '', '', 0, 'read', NULL, 5, 1, NULL, 8, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-27 17:44:12'),
 (10003, NULL, 'T.H', 'タナカ　ヒロカズ', 'タナカ　ヒロカズ', '男', '0000-00-00', '', 13, '板橋区', '', '', '9093890662', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '大規模修繕', '', NULL, NULL, 'unread', 0, 0, 1, NULL, 8, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-27 14:30:05'),
 (10004, NULL, 'H.S', '長谷川秀一', 'はせがわ　しゅういち', '男', '1961-06-04', '', 0, '', '', '', '9035969231', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '両極性欝', '', NULL, NULL, 'read', 0, 0, 1, NULL, 3, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:08:57'),
 (10005, NULL, 'T.Y', '戸田吉則', 'とだ　よしのり', '男', '1979-09-14', '', 0, '', '', '', '9082002114', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '夢真4ヶ月で退職', '', NULL, NULL, 'read', 0, 0, 1, NULL, 3, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:09:21'),
@@ -3328,7 +3326,7 @@ CREATE TABLE IF NOT EXISTS `institutions` (
 --
 
 INSERT INTO `institutions` (`id`, `name`, `furigana`, `job_category`, `postalcode`, `prefecture_id`, `address`, `nearest_station`, `tel`, `fax`, `email`, `url`, `specialty_area`, `designated_invoice`, `company_code`, `mobile_loan`, `transportation_expenses`, `accommodation_contract`, `cad`, `important_point`, `proposal_for_over_60`, `proposal_for_inexperienced`, `proposed_engineer`, `other_remarks`, `agreement_date`, `charge_method`, `contract_contents`, `interview_selection_process`, `other`, `closing_date`, `arrival_date`, `payment_date`, `invoice_remarks`, `entry_sheet_remarks`, `contact_person_count`, `applicant_count`, `note_count`, `upload_document_count`, `work_type_id`, `deleted`, `created_at`, `updated_at`) VALUES
-(1, '清水建設株式会社　本社', 'しみずけんせつ', '建築', '104-8370', 13, '東京都中央区京橋二丁目16番1号', '', '03-3561-1111', '', '', '', '', '無', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', '', '', '', '', 1, 0, 0, 3, 0, 0, '2017-01-24 18:05:38', '2017-01-27 17:24:23'),
+(1, '清水建設株式会社　本社', 'しみずけんせつ', '建築', '104-8370', 13, '東京都中央区京橋二丁目16番1号', '', '03-3561-1111', '', '', '', '', '無', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', '', '', '', '', 1, 0, 0, 0, 0, 0, '2017-01-24 18:05:38', '2017-01-27 17:44:41'),
 (2, '清水建設株式会社　本社', 'しみずけんせつ', '建築', '104-8370', 13, '東京都中央区京橋二丁目16番1号', '', '03-3561-3100', '03-5441-0380', '', '', '', '無', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', 'メール', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, 0, '2017-01-24 18:05:38', '2017-01-24 18:05:38'),
 (3, '清水建設株式会社　本社', 'しみずけんせつ', '建築', '104-8370', 13, '東京都中央区京橋二丁目16番1号', '', '03-3561-3700', '', '', '', '', '無', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, 0, '2017-01-24 18:05:38', '2017-01-24 18:05:38'),
 (4, '清水建設株式会社　横浜支店', 'しみずけんせつ', '建築', '231-0041', 14, '神奈川県横浜市中区吉田町65　ERVIC', '', '045-253-2212', '045-251-4581', '', '', '', '無', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, 0, '2017-01-24 18:05:38', '2017-01-24 18:05:38'),
@@ -6414,19 +6412,12 @@ CREATE TABLE IF NOT EXISTS `upload_documents` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `target_id` (`target_id`,`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- テーブルのデータをダンプしています `upload_documents`
 --
 
-INSERT INTO `upload_documents` (`id`, `target_id`, `type`, `remark`, `document`, `document_dir`, `document_type`, `document_size`, `created_at`, `updated_at`) VALUES
-(1, 10002, 'Applicant', 'test', 'mamoru.conf', '1', 'application/octet-stream', 12089, '0000-00-00 00:00:00', '2017-01-27 15:48:12'),
-(2, 10002, 'Applicant', '', 'guide_living_en.pdf', '2', 'application/pdf', 524938, '0000-00-00 00:00:00', '2017-01-27 15:48:56'),
-(3, 10002, 'Applicant', '', 'ヒンディー語で自己紹介--.docx', '3', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 26923, '0000-00-00 00:00:00', '2017-01-27 15:49:26'),
-(11, 1, 'Institution', 'ヒンディー語で自己紹介', '1485503384.docx', '11', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 26923, '0000-00-00 00:00:00', '2017-01-27 16:55:50'),
-(12, 1, 'Institution', 'test', '1485503464.pdf', '12', 'application/pdf', 207564, '0000-00-00 00:00:00', '2017-01-27 16:55:50'),
-(13, 1, 'Institution', '振込振替 _ 取引結果印刷 - 三菱東京ＵＦＪ銀行', '1485503734.pdf', '13', 'application/pdf', 207564, '0000-00-00 00:00:00', '2017-01-27 16:55:50');
 
 -- --------------------------------------------------------
 
@@ -6614,4 +6605,3 @@ INSERT INTO `work_types` (`id`, `name`, `applicant_only`, `sort_no`, `created_at
 (4, '設備', 0, 0, '2017-01-27 13:46:41', '2017-01-27 13:46:29'),
 (5, '未経験', 1, 0, '2017-01-27 13:46:41', '2017-01-27 13:46:49'),
 (6, 'その他', 1, 0, '2017-01-27 13:46:41', '2017-01-27 13:46:49');
-
