@@ -147,65 +147,90 @@
             <div class="row">
                <div class="col-xs-8">
                   <?php 
-                  echo $this->Form->label('employment_pattern', '雇用形態');
+                  echo $this->Form->label('employment_pattern', '雇用');
                   echo "<br>";
                   echo $this->Form->radio('employment_pattern', 
 									array(
 										"正社員" => "正社員", 
 										"入社予定" => "入社予定", 
-										"8:00～17:00（19:00）" => "8:00～17:00（19:00）",
 										), 
 									array('legend' => false, 'div' => false)); ?>
                </div>
                <div class="col-xs-4">
-                  <?php echo $this->Form->input('employment_pattern_remarks', array('label' => '雇用形態＿備考', 'class' => 'form-control'));?>
+                  <?php echo $this->Form->input('desired_joining_time', array('label' => '配属可能時期', 'class' => 'form-control'));?>
                </div>
             </div>
             
+            
             <div class="row">
                <div class="col-xs-12">
-				<?php
-				echo $this->Form->label('business_trip_availability', '出張可否');
-				echo "<br>";
-				echo $this->Form->radio('business_trip_availability', 
-									array(
-										"可能" => "可能",
-						               "不可" => "不可",
-						               "要相談" => "要相談",
-						               "入寮希望" => "入寮希望",
-						               ),
-								array('legend' => false, 'div' => false));
-				?>
+	    			   <?php
+			           echo $this->Form->label('working_hours', '勤務時間');
+				         echo "<br>";
+				         echo $this->Form->radio('working_hours', 
+									 array(
+									   "8:00～17:00" => "8:00～17:00",									
+										 "8:00～17:00（19:00）" => "8:00～17:00（19:00）",
+ 		                 "変則" => "変則",
+						       ),
+								   array('legend' => false, 'div' => false));
+				      ?>
+              </div>
+            </div> 
+            
+            
+            <div class="row">
+               <div class="col-xs-12">
+				       <?php
+				         echo $this->Form->label('business_trip_availability', '出張可否');
+				         echo "<br>";
+				         echo $this->Form->radio('business_trip_availability', 
+									 array(
+										 "可能" => "可能",
+						         "不可" => "不可",
+						         "要相談" => "要相談",
+						         "入寮希望" => "入寮希望",
+						       ),
+								   array('legend' => false, 'div' => false));
+				       ?>
                </div>
             </div> 
             
             <div class="row">
                <div class="col-xs-12">
-				<?php
-				echo $this->Form->label('night_shift_availability', '夜勤可否');
-				echo "<br>";
-				echo $this->Form->radio('night_shift_availability', 
-									array(
-										"可能" => "可能",
-						               "不可" => "不可",
-						               "要相談" => "要相談",
-						               ),
-								array('legend' => false, 'div' => false));
-				?>
+				       <?php
+				         echo $this->Form->label('night_shift_availability', '夜勤可否');
+				         echo "<br>";
+				         echo $this->Form->radio('night_shift_availability', 
+									 array(
+										 "可能" => "可能",
+						         "不可" => "不可",
+						         "要相談" => "要相談",
+						       ),
+								   array('legend' => false, 'div' => false));
+				       ?>
                </div>
             </div> 
-           
-            
+                       
             <div class="row">
                <div class="col-xs-12">
-				<?php
-				echo $this->Form->label('commuting', '通勤手段');
-				echo "<br>";
-				echo $this->Form->input('commuting', array('label' => false, 'class' => 'form-control')); ?>
-				
-               </div>
+				       <?php
+				         echo $this->Form->label('commuting', '通勤手段');
+				         echo "<br>";
+				         echo $this->Form->input('commuting', array('label' => false, 'class' => 'form-control', 'placeholder' => '車通勤・公共交通機関')); 
+				       ?>
+				       </div>
             </div> 
-             
+
+            <div class="row">
+               <div class="col-xs-12">
+				       <?php
+				         echo $this->Form->label('commuting_time', '通勤可能時間');
+				         echo "<br>";
+				         echo $this->Form->input('commuting_time', array('label' => false, 'class' => 'form-control')); 
+				       ?>
+				       </div>
+            </div>             
                
             <div class="row">   
                <div class="col-xs-12">
@@ -222,7 +247,7 @@
                         </tbody>
                         <tfoot>
                            <tr>
-                              <td colspan="2"></td>
+                              <td colspan="3"></td>
                               <td><a href="#" class="add btn-success btn-xs">追加</a></td>
                            </tr>
                         </tfoot>

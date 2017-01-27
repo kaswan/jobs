@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
 class Applicant extends AppModel {
 	
 	
-	public $belongsTo = array('Prefecture', 'ProgressStatus', 'MediaType', 'Rank', 'Result', 'Institution' => array('counterCache' => true), 'User' => array('counterCache' => true));
+	public $belongsTo = array('Prefecture', 'ProgressStatus', 'MediaType', 'Rank', 'Result', 'WorkType','Institution' => array('counterCache' => true), 'User' => array('counterCache' => true));
 	public $hasMany = array('WorkHistory', 'WorkSkill','QualificationHistory' => array('order' => 'QualificationHistory.year DESC, QualificationHistory.month DESC'),
 			                'Note' => array(
 					           'className' => 'Note',
@@ -20,7 +20,7 @@ class Applicant extends AppModel {
 	
 	public $virtualFields = array(
 			'age' => "DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(Applicant.date_of_birth, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(Applicant.date_of_birth, '00-%m-%d'))",
-			'freeword' => 'CONCAT(Applicant.name, Applicant.furigana, Applicant.gender, Applicant.address, Applicant.employment_pattern, Applicant.employment_pattern_remarks, Applicant.desired_joining_time, Applicant.places_of_employment, Applicant.annual_income, Applicant.holiday, Applicant.working_hours, Applicant.commuting_time, Applicant.desired_working_days, Applicant.desired_department, Applicant.commuting, Applicant.contract_document, Applicant.remarks, Applicant.entry_sheet_remarks, Applicant.id, Applicant.tel, Applicant.tel_home)',
+			'freeword' => 'CONCAT(Applicant.name, Applicant.furigana, Applicant.gender, Applicant.id, Applicant.tel, Applicant.tel_home)',
 			'email_combine' => 'CONCAT(Applicant.email,";",Applicant.email_mobile)'
 			);
 	
@@ -74,7 +74,9 @@ class Applicant extends AppModel {
     	if(!$this->id && !isset($this->data[$this->alias][$this->primaryKey])){
     		$this->data[$this->alias]['created_at'] = date("Y-m-d H:i:s");
     	}
-    	
+    	if(isset($this->data[$this->alias]['result_id']) && $this->data[$this->alias]['result_id'] == '3'){
+    		$this->data[$this->alias]['progress_status_id'] = '8';
+    	}
     	$this->data[$this->alias]['updated_at'] = date("Y-m-d H:i:s");
     	return true;
     }

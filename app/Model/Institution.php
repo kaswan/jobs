@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 
 class Institution extends AppModel {
 	public $actsAs = array('Containable');
-	public $belongsTo = array('Prefecture');
+	public $belongsTo = array('Prefecture', 'WorkType');
 	public $hasMany = array(
 			'Applicant',
 			'ContactPerson',
@@ -75,7 +75,9 @@ class Institution extends AppModel {
     	if(!$this->id && !isset($this->data[$this->alias][$this->primaryKey])){
     		$this->data[$this->alias]['created_at'] = date("Y-m-d H:i:s");
     	}
-    	$this->data[$this->alias]['tel'] = str_replace('−','-',$this->data[$this->alias]['tel']);
+    	if(isset($this->data[$this->alias]['tel'])){
+    	 $this->data[$this->alias]['tel'] = str_replace('−','-',$this->data[$this->alias]['tel']);
+    	}
     	$this->data[$this->alias]['updated_at'] = date("Y-m-d H:i:s");
     	return true;
     }    

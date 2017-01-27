@@ -29,10 +29,9 @@
       <div class="col-xs-2">
          <?php echo $this->Form->input('employment_pattern', array('label' => false, 'class' => 'form-control', 
                'options' => 
-                 array('' => '雇用形態を選んでください', 
+                 array('' => '雇用を選んでください', 
                     "正社員" => "正社員", 
-										"入社予定" => "入社予定", 
-										"8:00～17:00（19:00）" => "8:00～17:00（19:00）",
+										"入社予定" => "入社予定",
 										) )); ?>
       </div>
       
@@ -78,11 +77,12 @@
         <th>資格</th>
         <th><?php echo $this->Paginator->sort('age', '年齢'); ?></th>
         <th><?php echo $this->Paginator->sort('prefecture_id', '都道府県'); ?></th>
+        <th><?php echo $this->Paginator->sort('work_type_id', '職種'); ?></th>
         <th><?php echo $this->Paginator->sort('progress_status_id', 'ステータス'); ?></th>
         <th><?php echo $this->Paginator->sort('employment_pattern', '雇用形態'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', '担当者'); ?></th>
         <th><?php echo $this->Paginator->sort('media_type_id', '媒体'); ?></th>
-        <th><?php echo $this->Paginator->sort('result_id', '採否'); ?></th>
+        <th><?php echo $this->Paginator->sort('result_id', '採否'); ?></th>        
         <th><?php echo $this->Paginator->sort('user_id', 'メルマガ'); ?></th>
         <th><?php echo $this->Paginator->sort('created_at', '作成日'); ?></th>
         <th></th>
@@ -103,6 +103,25 @@
           <td class="<?php echo $val['Applicant']['status'];?>"><?php if(isset($qualification_history[$val['Applicant']['id']]))echo $qualification_history[$val['Applicant']['id']]?></td>
           <td class="<?php echo $val['Applicant']['status'];?>"><?php if($val['Applicant']['age'] <= '100') echo $val['Applicant']['age'].'歳';?></td>
           <td class="<?php echo $val['Applicant']['status'];?>"><?php if($val['Applicant']['prefecture_id'] > 0 )echo $prefectures[$val['Applicant']['prefecture_id']];?></td>
+          
+          <td class="<?php echo $val['Applicant']['status'];?>">
+          <?php
+          		echo $this->inPlaceEditing->input('Applicant', 'work_type_id', $val['Applicant']['id'],
+        				array('value' => $val['WorkType']['name'],
+              			'actionName' => Router::url(array('controller' => 'Applicants', 'action' => 'in_place_editing')),
+             		 		'type' => 'select',
+             		 		'selectOptions' => json_encode(array('') + $work_types),
+             		 		'selected' => $val['Applicant']['work_type_id'],
+              				'cancelText' => 'キャンセル',
+              				'submitText' => '保存',
+              				'toolTip' => 'クリックして編集する',
+             			 	'containerType' => 'label',
+             			 	'containerClass' => 'bg-warning ',
+              	)
+        			);
+          ?>
+          </td>
+          
           <td class="<?php echo $val['Applicant']['status'];?>">
           <?php
           			echo $this->inPlaceEditing->input('Applicant', 'progress_status_id', $val['Applicant']['id'],
@@ -179,10 +198,12 @@
           ?>
           </td>
           
-          <td>
+          
+          
+          
+          <td class="<?php echo $val['Applicant']['status'];?>">
           <?php
-          		
-          			echo $this->inPlaceEditing->input('Applicant', 'mail_magazine_subscription', $val['Applicant']['id'],
+         			echo $this->inPlaceEditing->input('Applicant', 'mail_magazine_subscription', $val['Applicant']['id'],
         				array('value' => $val['Applicant']['mail_magazine_subscription'] ? '希望する' : '希望しない',
               				'actionName' => Router::url(array('controller' => 'Applicants', 'action' => 'in_place_editing')),
              		 		'type' => 'select',
@@ -195,7 +216,6 @@
              			 	'containerClass' => 'bg-info',
               			)
         			);
-				
           ?>
           </td>
           

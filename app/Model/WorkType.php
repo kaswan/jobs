@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 
 class WorkType extends AppModel {
 	
-	public $hasMany = array('Applicant');
+	public $hasMany = array('Applicant','Institution');
     
 }
 

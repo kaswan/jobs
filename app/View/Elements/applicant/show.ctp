@@ -90,13 +90,19 @@
     
     <tbody>
       <tr>
-        <td width="150px"><b>雇用形態</b></td>
+        <td width="150px"><b>雇用</b></td>
         <td><?php echo $applicant['Applicant']['employment_pattern'] ?></td>
       </tr>
       <tr>
-        <td width="150px"><b>雇用形態_備考</b></td>
-        <td><?php echo $applicant['Applicant']['employment_pattern_remarks'] ?></td>
+        <td width="150px"><b>配属可能時期</b></td>
+        <td><?php echo $applicant['Applicant']['desired_joining_time'] ?></td>
       </tr>
+      
+      <tr>
+        <td width="150px"><b>勤務時間</b></td>
+        <td><?php echo $applicant['Applicant']['working_hours'] ?></td>
+      </tr>
+      
       <tr>
         <td width="150px"><b>出張可否</b></td>
         <td><?php echo $applicant['Applicant']['business_trip_availability'] ?></td>
@@ -110,6 +116,11 @@
       <tr>
         <td width="150px"><b>通勤手段</b></td>
         <td><?php echo $applicant['Applicant']['commuting'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="150px"><b>通勤可能時間</b></td>
+        <td><?php echo $applicant['Applicant']['commuting_time'] ?></td>
       </tr>
     </tbody>
   </table>
@@ -128,7 +139,8 @@
      <?php foreach($applicant['WorkHistory'] as $work) {?>
         <tr>
         	<td><?php echo($work['text_field_1'])?></td>
-        	<td><?php echo($work['text_field_2'])?></td>        	
+        	<td><?php echo($work['text_field_2'])?></td>
+        	<td><?php echo($work['text_field_3'])?></td>        	
         </tr>
         
      <?php } ?>     

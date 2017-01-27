@@ -1,5 +1,5 @@
 <?php if(!empty($institution)){ ?>
-  <pre>施設情報</pre>
+  <pre>企業情報</pre>
   <table >
     <thead>
       <tr>
@@ -136,8 +136,30 @@
       </tr>
       
       <tr>
+        <td width="200px"><b>締日</b></td>
+        <td><?php echo $institution['Institution']['closing_date'] ?></td>
+      </tr>
+      
+      
+      <tr>
+        <td width="200px"><b>着日</b></td>
+        <td><?php echo $institution['Institution']['arrival_date'] ?></td>
+      </tr>
+      
+      <tr>
+        <td width="200px"><b>入金日</b></td>
+        <td><?php echo $institution['Institution']['payment_date'] ?></td>
+      </tr>
+      
+      
+      <tr>
         <td width="200px"><b>過去の提案技術者</b></td>
         <td><?php echo nl2br($institution['Institution']['proposed_engineer']) ?></td>
+      </tr>
+      
+      <tr>
+        <td width="150px"><b>備考（請求書）</b></td>
+        <td><?php echo nl2br($institution['Institution']['invoice_remarks']) ?></td>
       </tr>
       
       <tr>
@@ -177,9 +199,13 @@
         <td><?php echo nl2br($institution['Institution']['interview_selection_process']) ?></td>
       </tr>    
       
-       <tr>
-        <td width="150px"><b>その他備考</b></td>
+      <tr>
+        <td width="150px"><b>備考</b></td>
         <td><?php echo nl2br($institution['Institution']['other']) ?></td>
+      </tr>
+      <tr>
+        <td width="150px"><b>その他備考（エントリーシート）</b></td>
+        <td><?php echo nl2br($institution['Institution']['entry_sheet_remarks']) ?></td>
       </tr>
     </tbody>
   </table>

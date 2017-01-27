@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
  
 class InstitutionsController extends AppController {
 
-	public $uses = array('Institution','Prefecture', 'UploadDocument', 'ContactPerson',);
+	public $uses = array('Institution','Prefecture', 'UploadDocument', 'ContactPerson', 'WorkType');
 	public $components = array('Paginator','Mpdf','RequestHandler' => array(
 					'viewClassMap' => array('csv' => 'CsvView.Csv')
 			));
@@ -30,6 +30,9 @@ class InstitutionsController extends AppController {
 			Cache::write('lists', $user, 'user');
 		}
 		$this->set('users', $user);
+		
+		$work_types = $this->WorkType->find('list',array('fields' => array('id', 'name')));
+		$this->set('work_types', $work_types);
 	}
 	
 	public function index() {
@@ -90,6 +93,8 @@ class InstitutionsController extends AppController {
 				   'Institution.id' => 'ASC'
 			));
 		$this->set('institutions', $this->Paginator->paginate());
+		
+		$this->set('contact_people', $this->ContactPerson->find('list', array('fields' => array('institution_id', 'department'))));
 	}
 
 		
@@ -133,9 +138,9 @@ class InstitutionsController extends AppController {
 				$condition = array('target_id' => $this->Institution->id, 'type' => 'Institution', 'NOT' => array('UploadDocument.id' => $upload_res));
 				$this->UploadDocument->deleteAll($condition,false);
 				foreach ($this->request->data['UploadDocument'] as $key => $val) {
-					if (empty($val['document']['name'])) {
-						unset($this->request->data['UploadDocument'][$key]);
-					}
+// 					if (empty($val['document']['name'])) {
+// 						unset($this->request->data['UploadDocument'][$key]);
+// 					}
 				}
 			}else{
 				$condition = array('target_id' => $this->Institution->id, 'type' => 'Institution');
@@ -168,15 +173,13 @@ class InstitutionsController extends AppController {
 		$institutions = $this->Institution->find('all');
 		$_serialize = 'institutions';
 		$_header = array(
-				'ID', '法人名', 'ふりがな', '名称', 'ふりがな', 
+				'ID', '法人名', 'ふりがな', 
 				'〒', '都道府県', '住所', '最寄駅', 'TEL', 'FAX', 'Email', 'URL',
 				'区分', '科目', '病床数', '看護基準', '利用者数', '想定年収', 
 				'契約締結年月', '契約パーセンテージ', '返金規定', '書類関係', '面接情報', '備考',
 				'登録日時', '最終更新日時');
 		$_extract = array(
 				'Institution.id', 
-				'Institution.corporate_name',
-				'Institution.corporate_furigana',
 				'Institution.name',
 				'Institution.furigana',
 				'Institution.postalcode',
@@ -206,6 +209,27 @@ class InstitutionsController extends AppController {
 		$_delimiter = chr(9); //tab
 		$this->viewClass = 'CsvView.Csv';
 		$this->set(compact('institutions', '_serialize', '_header', '_extract', '_enclosure', '_null', '_delimiter'));
+	}
+	
+	
+	public function in_place_editing($id = null) {
+		Configure::write('debug', 2);
+		if (!$id) return;
+		if ($this->request->data) {
+			# get all the fields with its values (there should be only one, but anyway ...)
+			foreach($this->data['Institution'] as $field => $value){
+	
+				$this->Institution->id = $id;
+				$this->Institution->saveField($field, $value);
+				if ($field == 'work_type_id'){
+					$work = $this->WorkType->read(null, $value);
+					$this->set('updated_value', $work['WorkType']['name']);
+				}
+	
+				$this->beforeRender();
+				$this->layout = 'ajax';
+			}
+		}
 	}
 	
 	public function delete($id = null) {

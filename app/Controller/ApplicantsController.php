@@ -67,6 +67,9 @@ class ApplicantsController extends AppController {
 	    }
 	    $this->set('qualifications', $qualification);
 	    
+	    
+	    $work_types = $this->WorkType->find('list',array('fields' => array('id', 'name')));
+	    $this->set('work_types', $work_types);
 	}
 	
 	public function index() {
@@ -278,9 +281,9 @@ class ApplicantsController extends AppController {
 				$condition = array('target_id' => $this->Applicant->id, 'type' => 'Applicant', 'NOT' => array('UploadDocument.id' => $upload_res));
 				$this->UploadDocument->deleteAll($condition,false);
 				foreach ($this->request->data['UploadDocument'] as $key => $val) {
-					if (empty($val['document']['name'])) {
-						unset($this->request->data['UploadDocument'][$key]);
-					}
+// 					if (empty($val['document']['name'])) {
+// 						unset($this->request->data['UploadDocument'][$key]);
+// 					}
 				}
 			}else{
 				$condition = array('target_id' => $this->Applicant->id, 'type' => 'Applicant');
@@ -345,6 +348,9 @@ class ApplicantsController extends AppController {
 				}elseif ($field == 'result_id'){
 					$result = $this->Result->read(null, $value);
 					$this->set('updated_value', $result['Result']['name']);
+				}elseif ($field == 'work_type_id'){
+					$work = $this->WorkType->read(null, $value);
+					$this->set('updated_value', $work['WorkType']['name']);
 				}elseif ($field == 'user_id'){
 					$user = $this->User->read(null, $value);
 					$this->set('updated_value', $user['User']['name']);

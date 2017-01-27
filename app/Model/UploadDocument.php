@@ -11,6 +11,7 @@ class UploadDocument extends AppModel {
 									'type' => 'document_type',
 									'size' => 'document_size',
 							),
+							'nameCallback'=>'renameFile',
 					)
 			)
 	);
@@ -42,7 +43,14 @@ class UploadDocument extends AppModel {
     	return true;
     }    
     
-    
+    public function renameFile($currentName,$data,$field) {    	
+    	$array = explode(".",$data);
+    	$newName = time().".".end($array);
+    	if(isset($this->data[$this->alias]['remark']) && empty($this->data[$this->alias]['remark'])){
+    		$this->data[$this->alias]['remark'] = implode('.',$array);
+    	}
+    	return $newName;
+    }
 }
 
 ?>

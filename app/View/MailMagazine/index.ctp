@@ -99,8 +99,8 @@
     
     
     <tr><th>確認用アドレス</th><td class="align_l"><input style="width:700px" name="mailToTest" type="text" value="<?php if(!empty($this->request->data['mailToTest'])) echo htmlspecialchars($this->request->data['mailToTest']); ?>"/>  </td></tr>
-    <tr><th>送信元アドレス</th><td class="align_l"><input style="width:700px" name="mailFrom" type="text"  value="<?php !empty($this->request->data['mailFrom']) ? print_r($this->request->data['mailFrom']) : print_r("info@medical-jobs.co.jp") ?>" />  </td></tr>
-    <tr><th>送信者名</th><td class="align_l"><input style="width:700px" name="mailSender" type="text"  value="<?php !empty($this->request->data['mailSender']) ? print_r($this->request->data['mailSender']) : print_r("メディカルジョブズ") ?>" />  </td></tr>
+    <tr><th>送信元アドレス</th><td class="align_l"><input style="width:700px" name="mailFrom" type="text"  value="<?php !empty($this->request->data['mailFrom']) ? print_r($this->request->data['mailFrom']) : print_r("info@jobs-c.com") ?>" />  </td></tr>
+    <tr><th>送信者名</th><td class="align_l"><input style="width:700px" name="mailSender" type="text"  value="<?php !empty($this->request->data['mailSender']) ? print_r($this->request->data['mailSender']) : print_r("施工管理ワークス") ?>" />  </td></tr>
     <tr><th>件　名</th><td class="align_l"><input style="width:700px" name="mailTitle" type="text" value="<?php if(!empty($this->request->data['mailTitle'])) echo htmlspecialchars($this->request->data['mailTitle']); ?>"/><span class="error" id="mail-title"></span></td></tr>
     <tr style="vertical-align:top"><th>本　文</th><td class="align_l"><textarea style="width:700px;height:330px" name="mailBody" ><?php if(!empty($this->request->data['mailBody'])) echo htmlspecialchars($this->request->data['mailBody']); ?></textarea><span class="error" id="mail-body"></span></td></tr>
   </table>
