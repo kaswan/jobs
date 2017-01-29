@@ -129,7 +129,7 @@
                         
           <div class="row">
              <div class="col-xs-12">
-	               <legend>最終学歴</legend>
+	               <legend>学歴</legend>
 	           </div>
 	        </div>
 	        

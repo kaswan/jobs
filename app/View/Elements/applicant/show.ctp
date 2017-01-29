@@ -54,7 +54,7 @@
         <td colspan="2"><?php echo $applicant['Applicant']['nearest_station'] ?></td>
       </tr>
       <tr>
-        <td><b>最終学歴</b></td>
+        <td><b>学歴</b></td>
         <td colspan="2"><?php echo $applicant['Applicant']['education'] ?></td>
       </tr>
     </tbody>
@@ -65,7 +65,7 @@
     <thead>
       <tr>
         <th ><kbd>取得資格</kbd></th>    
-        <th ><kbd>取得年月</kbd></th>   
+        <!-- <th ><kbd>取得年月</kbd></th> -->   
       </tr>
     </thead>
     
@@ -73,7 +73,7 @@
      <?php foreach($applicant['QualificationHistory'] as $qualification) {?>
         <tr>
         	<td><?php echo($qualification['name'])?></td>
-        	<td><?php echo($qualification['year']. '年'. $qualification['month'] . '月')?></td>
+        	<!-- <td><?php echo($qualification['year']. '年'. $qualification['month'] . '月')?></td>-->
         </tr>
         
      <?php } ?>     
@@ -131,7 +131,7 @@
   <table>
     <thead>
       <tr>
-        <th colspan="2"><kbd> 経歴</kbd></th>      
+        <th colspan="3"><kbd> 経歴</kbd></th>      
       </tr>
     </thead>
         
