@@ -5,7 +5,7 @@ class Applicant extends AppModel {
 	
 	
 	public $belongsTo = array('Prefecture', 'ProgressStatus', 'MediaType', 'Rank', 'Result', 'WorkType','Institution' => array('counterCache' => true), 'User' => array('counterCache' => true));
-	public $hasMany = array('WorkHistory', 'WorkSkill','QualificationHistory' => array('order' => 'QualificationHistory.year DESC, QualificationHistory.month DESC'),
+	public $hasMany = array('WorkHistory', 'WorkSkill','ApplicantStatus', 'QualificationHistory', #=> array('order' => 'QualificationHistory.year DESC, QualificationHistory.month DESC'),
 			                'Note' => array(
 					           'className' => 'Note',
 					           'foreignKey' => 'target_id',
@@ -74,9 +74,9 @@ class Applicant extends AppModel {
     	if(!$this->id && !isset($this->data[$this->alias][$this->primaryKey])){
     		$this->data[$this->alias]['created_at'] = date("Y-m-d H:i:s");
     	}
-    	if(isset($this->data[$this->alias]['result_id']) && $this->data[$this->alias]['result_id'] == '3'){
-    		$this->data[$this->alias]['progress_status_id'] = '8';
-    	}
+//     	if(isset($this->data[$this->alias]['result_id']) && $this->data[$this->alias]['result_id'] == '3'){
+//     		$this->data[$this->alias]['progress_status_id'] = '8';
+//     	}
     	$this->data[$this->alias]['updated_at'] = date("Y-m-d H:i:s");
     	return true;
     }

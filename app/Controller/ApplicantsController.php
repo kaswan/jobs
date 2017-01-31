@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class ApplicantsController extends AppController {
 
 	public $uses = array('Applicant','Institution','WorkType','Prefecture', 'ProgressStatus', 'User', 
-			'WorkHistory', 'WorkSkill', 'QualificationHistory', 'UploadDocument', 'Qualification', 'Rank', 'MediaType', 'Result');
+			'WorkHistory', 'WorkSkill', 'QualificationHistory', 'ApplicantStatus', 'UploadDocument', 'Qualification', 'Rank', 'MediaType', 'Result');
 	public $components = array('Paginator','Mpdf', 'RequestHandler');
 	public $paginate = array();
 	
@@ -116,6 +116,10 @@ class ApplicantsController extends AppController {
 				    } elseif ($param_name == 'qualification'){
 				    	$option = array('INNER JOIN qualification_histories AS QualificationHistory ON Applicant.id=QualificationHistory.applicant_id');
 		            	$conditions['QualificationHistory.name'] = $value;
+	            	} elseif ($param_name == 'applicant_status'){
+	            		$option = array('INNER JOIN applicant_statuses AS ApplicantStatus ON Applicant.id=ApplicantStatus.applicant_id');
+	            		$conditions['ApplicantStatus.progress_status_id'] = $value;		            	
+		            	
 				    } else {
 		            	$conditions['Applicant.'.$param_name] = $value;
 		            }
@@ -150,7 +154,7 @@ class ApplicantsController extends AppController {
 		Cache::write('lists', $applicants, 'applicant');
 
 		$this->set('qualification_history', $this->QualificationHistory->find('list', array('fields' => array('applicant_id', 'name'), 'conditions' => array('applicant_id' => $applicants))));
-		
+		$this->set('applicant_status', $this->ApplicantStatus->find('list', array('fields' => array('applicant_id', 'progress_status_id'), 'conditions' => array('applicant_id' => $applicants))));
 	}
 
 	public function view($id = null) {
@@ -276,14 +280,26 @@ class ApplicantsController extends AppController {
 				$this->QualificationHistory->deleteAll($condition,false);
 			}
 			
+			
+			if(!empty($this->request->data['ApplicantStatus'])){
+				$res = Hash::extract($this->request->data['ApplicantStatus'], '{n}.id');
+				$condition = array('applicant_id' => $this->Applicant->id, 'NOT' => array('ApplicantStatus.id' => $res));
+				$this->ApplicantStatus->deleteAll($condition,false);
+			
+			}else{
+				$condition = array('applicant_id' => $this->Applicant->id);
+				$this->ApplicantStatus->deleteAll($condition,false);
+			}
+			
+			
 			if(!empty($this->request->data['UploadDocument'])){
 				$upload_res = Hash::extract($this->request->data['UploadDocument'], '{n}.id');
 				$condition = array('target_id' => $this->Applicant->id, 'type' => 'Applicant', 'NOT' => array('UploadDocument.id' => $upload_res));
 				$this->UploadDocument->deleteAll($condition,false);
 				foreach ($this->request->data['UploadDocument'] as $key => $val) {
-// 					if (empty($val['document']['name'])) {
-// 						unset($this->request->data['UploadDocument'][$key]);
-// 					}
+					if (empty($val['document']['name'])) {
+						unset($this->request->data['UploadDocument'][$key]);
+					}
 				}
 			}else{
 				$condition = array('target_id' => $this->Applicant->id, 'type' => 'Applicant');

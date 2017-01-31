@@ -138,9 +138,9 @@ class InstitutionsController extends AppController {
 				$condition = array('target_id' => $this->Institution->id, 'type' => 'Institution', 'NOT' => array('UploadDocument.id' => $upload_res));
 				$this->UploadDocument->deleteAll($condition,false);
 				foreach ($this->request->data['UploadDocument'] as $key => $val) {
-// 					if (empty($val['document']['name'])) {
-// 						unset($this->request->data['UploadDocument'][$key]);
-// 					}
+					if (empty($val['document']['name'])) {
+						unset($this->request->data['UploadDocument'][$key]);
+					}
 				}
 			}else{
 				$condition = array('target_id' => $this->Institution->id, 'type' => 'Institution');

@@ -24,7 +24,16 @@
 
     <div class="col-xs-7">
 		<div class="users form">
-			<abbr title="ステータス"><label class='label label-danger'><?php echo $applicant['ProgressStatus']['name']?></label></abbr>			
+			<abbr title="ステータス">
+			  <label class='label label-danger'>
+			  <?php 
+			    $applicant_status = end($applicant['ApplicantStatus']);
+			    if(!empty($applicant_status)){
+			      if(isset($applicant_status['progress_status_id'])) echo $statuses[$applicant_status['progress_status_id']];
+			    }
+			 	?>
+			 	</label>
+			</abbr>			
 			<abbr title="採否"><label class='label label-info'><?php echo $applicant['Result']['name']?></label></abbr>
 			<abbr title="媒体"><label class='label label-default'><?php echo $applicant['MediaType']['name']?></label></abbr>			
 			<abbr title="企業名"><label class='label label-warning'><?php echo $applicant['Institution']['name']?></label></abbr>			

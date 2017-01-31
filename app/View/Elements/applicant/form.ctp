@@ -312,17 +312,29 @@
             </div>
             
             <div class="row">
-                <div class="col-xs-12">
-                	<legend>ステータス</legend>
-                </div>                
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                  <?php echo $this->Form->input('progress_status_id', array('label' => false, 'class' => 'form-control','options' => array('' => '') + $statuses)); ?>
-                </div>
-                <div class="col-xs-6">
-            		  <?php if(!empty($institution_lists)) echo $this->Form->input('institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "施設を選ぶ",'options' => array('' => '法人施設を選ぶ・・・') + $institution_lists)); ?>
-			          </div>
+               <div class="col-xs-12">
+                  <legend>ステータス</legend>
+                  <fieldset>
+                     <table id="status-table">
+                        <tbody>
+                           <?php if (!empty($this->request->data['ApplicantStatus'])) :?>
+                              <?php for ($key = 0; $key < count($this->request->data['ApplicantStatus']); $key++) :?>
+                                 <?php echo $this->element('applicant/status', array('key' => $key));?>
+                              <?php endfor;?>
+                           <?php endif;?>
+                        </tbody>
+                        <tfoot>
+                           <tr>
+                              <td colspan="2"></td>
+                              <td><a href="#" class="add btn-success btn-xs">追加</a></td>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </fieldset>
+                  <script id="status-template" type="text/x-underscore-template">
+                     <?php echo $this->element('applicant/status');?>
+                  </script>
+               </div>
             </div>
             
             <div class="row">
@@ -474,6 +486,41 @@ $(document).ready(function() {
 });
 </script>
 
+
+
+<script>
+$(document).ready(function() {
+    var
+        statusTable = $('#status-table'),
+        statusBody = statusTable.find('tbody'),
+        statusTemplate = _.template($('#status-template').remove().text()),
+        numberRows = statusTable.find('tbody > tr').length;
+
+    statusTable
+        .on('click', 'a.add', function(e) {
+            e.preventDefault();
+
+            $(statusTemplate({key: numberRows++}))
+                .hide()
+                .appendTo(statusBody)
+                .fadeIn('fast');
+        })
+        .on('click', 'a.remove', function(e) {
+                e.preventDefault();
+
+            $(this)
+                .closest('tr')
+                .fadeOut('fast', function() {
+                    $(this).remove();
+                });
+        });
+
+        if (numberRows === 0) {
+            statusTable.find('a.add').click();
+        }
+});
+</script>
+
 <script>
 $(document).ready(function() {
     var
@@ -506,11 +553,9 @@ $(document).ready(function() {
         }
 });
 
-
-
-  
-
 </script>
+
+
 <script type="text/javascript">
   on_qualification();
   $(document).on('click', 'a.add', function(event){   

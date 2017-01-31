@@ -178,7 +178,9 @@
       </tr>      
     </tbody>
   </table>
+  
   <br>
+  
   <table>
     <thead>
       <tr>
@@ -192,6 +194,7 @@
       </tr>      
     </tbody>
   </table>
+  
   <br>
   <table>
     <thead>
@@ -207,6 +210,26 @@
     </tbody>
   </table>
   
+  <?php if(!empty($applicant['ApplicantStatus'])) { ?>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2"><kbd>ステータス</kbd></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <?php foreach($applicant['ApplicantStatus'] as $val) { ?>
+      <tr>        
+        <td><?php if(isset($val['progress_status_id'])) echo $statuses[$val['progress_status_id']] ?></td>
+        <td><?php if(isset($val['institution_id'])) echo $institution_lists[$val['institution_id']] ?></td>
+      </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+  <?php } ?>
+  
   <br>
   <table>
     <thead>
@@ -217,13 +240,29 @@
     </thead>
     
     <tbody>
-     <?php foreach($applicant['UploadDocument'] as $upload) {?>
+     <?php foreach($applicant['UploadDocument'] as $i => $upload) {?>
+        <?php if($i <= 10) { ?>
         <tr>
         	<td><?php echo($upload['remark'])?></td>
         	<td><?php echo $this->Html->link($upload['document'], $upload['document_path'], array('target' => 'blank'))?></td>
         </tr>
+        <?php } else { ?>
+        <tr class="document-hide" style="display:none;">
+        	<td><?php echo($upload['remark'])?></td>
+        	<td><?php echo $this->Html->link($upload['document'], $upload['document_path'], array('target' => 'blank'))?></td>
+        </tr>
+        <?php } ?>
      <?php } ?>     
     </tbody>
   </table>
-
+   <?php if(count($applicant['UploadDocument']) > 10 ) echo "<center><p class='btn btn-default show-more'>さらに表示する</p></center>"?>
 <?php } ?>
+
+
+
+<script>
+  $('.show-more').on('click', function(){
+    $('.document-hide').show();
+    $(this).hide();
+  });
+</script>

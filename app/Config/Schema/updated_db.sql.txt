@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- ホスト: 127.0.0.1
--- 生成時間: 2017 年 1 月 27 日 17:45
+-- 生成時間: 2017 年 1 月 31 日 13:03
 -- サーバのバージョン: 5.1.37
 -- PHP のバージョン: 5.3.0
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `applicants` (
 INSERT INTO `applicants` (`id`, `serial_number`, `nickname`, `name`, `furigana`, `gender`, `date_of_birth`, `postalcode`, `prefecture_id`, `address`, `house_address`, `nearest_station`, `tel`, `tel_home`, `email`, `email_mobile`, `contact_time`, `education`, `year_of_experience`, `desired_joining_time`, `employment_pattern`, `employment_pattern_remarks`, `business_trip_availability`, `night_shift_availability`, `places_of_employment`, `annual_income`, `holiday`, `working_hours`, `commuting_time`, `commuting`, `employment_status`, `desired_location_first_id`, `desired_location_second_id`, `qualification_year`, `contract_document`, `desired_department`, `desired_working_days`, `remarks`, `remarks_for_office_use`, `entry_sheet_remarks`, `work_type_id`, `status`, `progress_status_id`, `rank_id`, `media_type_id`, `institution_id`, `result_id`, `deleted`, `user_id`, `note_count`, `upload_document_count`, `post_id`, `mail_magazine_subscription`, `sort_modified_date`, `created_at`, `updated_at`) VALUES
 (10001, NULL, 'S.H', 'シゲヒサ　ヒロキ', 'シゲヒサ　ヒロキ', '男', '0000-00-00', '', 0, '', '', '', '9041728611', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '接客業経験あり。時間が掛かりすぎて本人辞退', '', NULL, NULL, 'read', 10, 5, 1, NULL, 0, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:08:57'),
 (10002, NULL, 'S.M', 'シタクボ　マサハル', 'シタクボ　マサハル', '男', NULL, '', NULL, '', '', '', '9054466407', '', '', '', NULL, '', NULL, '', '', NULL, '', '', NULL, NULL, NULL, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '癖が強そう', '', '', 0, 'read', NULL, 5, 1, NULL, 8, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-27 17:44:12'),
-(10003, NULL, 'T.H', 'タナカ　ヒロカズ', 'タナカ　ヒロカズ', '男', '0000-00-00', '', 13, '板橋区', '', '', '9093890662', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '大規模修繕', '', NULL, NULL, 'unread', 0, 0, 1, NULL, 8, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-27 14:30:05'),
+(10003, NULL, 'T.H', 'タナカ　ヒロカズ', 'タナカ　ヒロカズ', '男', NULL, '', 13, '板橋区', '', '', '9093890662', '', '', '', NULL, '', NULL, '', '', NULL, '', '', NULL, NULL, NULL, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '大規模修繕', '', '', NULL, 'read', 0, NULL, 1, NULL, 8, 0, NULL, 0, 13, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-31 11:36:16'),
 (10004, NULL, 'H.S', '長谷川秀一', 'はせがわ　しゅういち', '男', '1961-06-04', '', 0, '', '', '', '9035969231', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '両極性欝', '', NULL, NULL, 'read', 0, 0, 1, NULL, 3, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:08:57'),
 (10005, NULL, 'T.Y', '戸田吉則', 'とだ　よしのり', '男', '1979-09-14', '', 0, '', '', '', '9082002114', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '夢真4ヶ月で退職', '', NULL, NULL, 'read', 0, 0, 1, NULL, 3, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:09:21'),
 (10006, NULL, 'M.K', 'ムロタ　ケイスケ', 'ムロタ　ケイスケ', '男', '0000-00-00', '', 13, '足立区', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '連絡なし', '', NULL, NULL, 'unread', 0, 5, 1, NULL, 0, 0, NULL, 0, 0, NULL, 0, NULL, '2017-01-25 10:08:57', '2017-01-25 10:08:57'),
@@ -679,6 +679,28 @@ INSERT INTO `applicants` (`id`, `serial_number`, `nickname`, `name`, `furigana`,
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `applicant_statuses`
+--
+
+CREATE TABLE IF NOT EXISTS `applicant_statuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicant_id` int(11) NOT NULL,
+  `progress_status_id` int(11) DEFAULT NULL,
+  `institution_id` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `applicant_id` (`applicant_id`,`progress_status_id`,`institution_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- テーブルのデータをダンプしています `applicant_statuses`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `areas`
 --
 
@@ -720,7 +742,7 @@ CREATE TABLE IF NOT EXISTS `cake_sessions` (
 --
 
 INSERT INTO `cake_sessions` (`id`, `data`, `expires`) VALUES
-('u7ng9rs3k4dpj7ei4946jfh4c6', 'Config|a:3:{s:9:"userAgent";s:32:"c12975a099b4e072d74a91b14a8c8183";s:4:"time";i:1501057585;s:9:"countdown";i:10;}Auth|a:1:{s:4:"User";a:12:{s:2:"id";s:1:"1";s:15:"employee_number";s:4:"1002";s:4:"name";s:12:"カスワン";s:8:"username";s:6:"kaswan";s:5:"email";s:14:"kaswan@broz.jp";s:4:"role";s:5:"admin";s:10:"ip_address";N;s:15:"applicant_count";s:1:"0";s:20:"password_reset_token";s:35:"5d974759f55640de6029b8f2171010978f6";s:7:"deleted";b:0;s:10:"created_at";s:19:"0000-00-00 00:00:00";s:10:"updated_at";s:19:"2017-01-23 16:54:45";}}Message|a:0:{}', 1501057585);
+('u7ng9rs3k4dpj7ei4946jfh4c6', 'Config|a:3:{s:9:"userAgent";s:32:"c12975a099b4e072d74a91b14a8c8183";s:4:"time";i:1501382176;s:9:"countdown";i:10;}Auth|a:1:{s:4:"User";a:12:{s:2:"id";s:1:"1";s:15:"employee_number";s:4:"1002";s:4:"name";s:12:"カスワン";s:8:"username";s:6:"kaswan";s:5:"email";s:14:"kaswan@broz.jp";s:4:"role";s:5:"admin";s:10:"ip_address";N;s:15:"applicant_count";s:1:"0";s:20:"password_reset_token";s:35:"5d974759f55640de6029b8f2171010978f6";s:7:"deleted";b:0;s:10:"created_at";s:19:"0000-00-00 00:00:00";s:10:"updated_at";s:19:"2017-01-23 16:54:45";}}Message|a:0:{}', 1501382176);
 
 -- --------------------------------------------------------
 
@@ -6088,7 +6110,7 @@ CREATE TABLE IF NOT EXISTS `qualification_histories` (
   PRIMARY KEY (`id`),
   KEY `applicant_id` (`applicant_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=245 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=248 ;
 
 --
 -- テーブルのデータをダンプしています `qualification_histories`
@@ -6338,7 +6360,10 @@ INSERT INTO `qualification_histories` (`id`, `applicant_id`, `name`, `year`, `mo
 (241, 10528, '測量士', '', NULL, '2017-01-27 13:38:38', '2017-01-27 13:38:38'),
 (242, 10554, '一級造園施工管理技士', '', NULL, '2017-01-27 13:38:38', '2017-01-27 13:38:38'),
 (243, 10454, '自動車免許', NULL, NULL, '2017-01-27 13:38:38', '2017-01-27 13:38:38'),
-(244, 10002, '', '', '', '2017-01-27 15:49:50', '2017-01-27 15:49:50');
+(244, 10002, '', '', '', '2017-01-27 15:49:50', '2017-01-27 15:49:50'),
+(245, 10003, '一級土木施工管理技士', '2012', '06', '2017-01-31 11:36:16', '2017-01-31 11:36:16'),
+(246, 10003, '二級建築施工管理技士', '2015', '02', '2017-01-31 11:36:16', '2017-01-31 11:36:16'),
+(247, 10003, '測量士', '1965', '11', '2017-01-31 11:36:16', '2017-01-31 11:36:16');
 
 -- --------------------------------------------------------
 
@@ -6486,7 +6511,7 @@ CREATE TABLE IF NOT EXISTS `work_histories` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `applicant_id` (`applicant_id`,`business_id`,`service_period_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- テーブルのデータをダンプしています `work_histories`
@@ -6504,7 +6529,8 @@ INSERT INTO `work_histories` (`id`, `applicant_id`, `text_field_1`, `text_field_
 (9, 10096, '施工管理経験10年', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-25 10:05:03'),
 (10, 10102, 'RCマンション4棟経験', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-25 10:05:03'),
 (11, 10113, '電工3年半', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-25 10:05:03'),
-(12, 10250, '施工管理歴2年、電気施工管理1年', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-25 10:05:03');
+(12, 10250, '施工管理歴2年、電気施工管理1年', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-25 10:05:03'),
+(13, 10003, '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-01-31 11:36:16');
 
 -- --------------------------------------------------------
 
@@ -6543,7 +6569,7 @@ CREATE TABLE IF NOT EXISTS `work_skills` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `applicant_id` (`applicant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- テーブルのデータをダンプしています `work_skills`
@@ -6575,7 +6601,8 @@ INSERT INTO `work_skills` (`id`, `applicant_id`, `quality_inspection`, `quality_
 (23, 10496, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Auto-CAD', NULL, NULL, NULL, '0000-00-00 00:00:00', '2017-01-25 10:06:31'),
 (24, 10497, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tfas', NULL, NULL, NULL, '0000-00-00 00:00:00', '2017-01-25 10:06:31'),
 (25, 10504, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JW-CAD', NULL, NULL, NULL, '0000-00-00 00:00:00', '2017-01-25 10:06:31'),
-(26, 10002, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2017-01-27 15:49:50');
+(26, 10002, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2017-01-27 15:49:50'),
+(27, 10003, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2017-01-31 11:36:16');
 
 -- --------------------------------------------------------
 

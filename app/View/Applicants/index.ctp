@@ -46,7 +46,7 @@
   
       <div class="col-xs-2">
          <?php     
-            echo $this->Form->input('progress_status_id', array('label' => false, 'class' => 'form-control','options' => array('' => 'ステータス') + $statuses)); 
+            echo $this->Form->input('applicant_status', array('label' => false, 'class' => 'form-control','options' => array('' => 'ステータス') + $statuses)); 
          ?>                                                 
       </div>
            
@@ -79,7 +79,7 @@
         <th><?php echo $this->Paginator->sort('prefecture_id', '都道府県'); ?></th>
         <th><?php echo $this->Paginator->sort('work_type_id', '職種'); ?></th>
         <th><?php echo $this->Paginator->sort('progress_status_id', 'ステータス'); ?></th>
-        <th><?php echo $this->Paginator->sort('employment_pattern', '雇用形態'); ?></th>
+        <th><?php echo $this->Paginator->sort('employment_pattern', '雇用'); ?></th>
         <th><?php echo $this->Paginator->sort('user_id', '担当者'); ?></th>
         <th><?php echo $this->Paginator->sort('media_type_id', '媒体'); ?></th>
         <th><?php echo $this->Paginator->sort('result_id', '採否'); ?></th>        
@@ -122,24 +122,8 @@
           ?>
           </td>
           
-          <td class="<?php echo $val['Applicant']['status'];?>">
-          <?php
-          			echo $this->inPlaceEditing->input('Applicant', 'progress_status_id', $val['Applicant']['id'],
-        				array('value' => $val['ProgressStatus']['name'],
-              				'actionName' => Router::url(array('controller' => 'Applicants', 'action' => 'in_place_editing')),
-             		 		'type' => 'select',
-             		 		'selectOptions' => json_encode(array('') + $statuses),
-             		 		'selected' => $val['Applicant']['progress_status_id'],
-              				'cancelText' => 'キャンセル',
-              				'submitText' => '保存',
-              				'toolTip' => 'クリックして編集する',
-             			 	'containerType' => 'label',
-             			 	'containerClass' => 'bg-warning ',
-              			)
-        			);
-          ?>
+          <td class="<?php echo $val['Applicant']['status'];?>"><?php if(isset($applicant_status[$val['Applicant']['id']]))echo $statuses[$applicant_status[$val['Applicant']['id']]] ?></td>
           
-          <?php //echo $val['ProgressStatus']['name'];?></td>
           <td class="<?php echo $val['Applicant']['status'];?>"><?php echo $val['Applicant']['employment_pattern'];?></td>
           <td >
           <?php
