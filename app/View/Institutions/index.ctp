@@ -21,7 +21,7 @@
          <?php echo $this->html->link('新規登録', array('controller' => 'institutions', 'action' => 'add'), array('class' => 'btn btn-danger '));?>
       </div>
       <div class="col-xs-2">
-         <?php if(AuthComponent::user('role') == 'admin') echo $this->html->link('CSVダウンロード', array('controller' => 'institutions', 'action' => 'export', '施設CSV_' . date("Y-m-d H:i:s") . '.xls'), array('class' => 'btn btn-warning '));?>
+         <?php if(AuthComponent::user('role') == 'admin') echo $this->html->link('CSVダウンロード', array('controller' => 'institutions', 'action' => 'export', '企業CSV_' . date("Y-m-d H:i:s") . '.xls'), array('class' => 'btn btn-warning '));?>
       </div>
    </div>   
    

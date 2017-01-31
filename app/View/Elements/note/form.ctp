@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-              	<?php if(!empty($institution_lists) && $type == 'Applicant') echo $this->Form->input('select_institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "施設を選ぶ",'options' => array('' => '法人施設を選ぶ・・・') + $institution_lists)); ?>
+              	<?php if(!empty($institution_lists) && $type == 'Applicant') echo $this->Form->input('select_institution_id', array('label' => false, 'class' => 'form-control chosen-select', 'data-placeholder'=> "企業を選ぶ",'options' => array('' => '企業を選ぶ・・・') + $institution_lists)); ?>
 			</div>
         </div>
     </div>    

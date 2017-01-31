@@ -108,10 +108,10 @@ class InstitutionsController extends AppController {
 			}
 			$this->request->data['Institution']['created_at'] = date("Y-m-d H:i:s");
 			if ($this->Institution->saveAssociated($this->request->data)) {
-				$this->Session->setFlash(__('施設登録しました。'));
+				$this->Session->setFlash(__('企業登録しました。'));
 				return $this->redirect(array('action' => 'view', $this->Institution->id));
 			}
-			$this->Session->setFlash('施設情報を保存できませんでした。もう一度試してください。');
+			$this->Session->setFlash('企業情報を保存できませんでした。もう一度試してください。');
 		}
 	}
 
@@ -175,8 +175,8 @@ class InstitutionsController extends AppController {
 		$_header = array(
 				'ID', '法人名', 'ふりがな', 
 				'〒', '都道府県', '住所', '最寄駅', 'TEL', 'FAX', 'Email', 'URL',
-				'区分', '科目', '病床数', '看護基準', '利用者数', '想定年収', 
-				'契約締結年月', '契約パーセンテージ', '返金規定', '書類関係', '面接情報', '備考',
+				'得意エリア・得意工事', '指定請求書', '会社コード', '携帯の貸出', '交通費', '宿泊契約', '使用CAD','注意点','60歳以上の提案','未経験者の提案','過去の提案技術者','締日','着日','入金日','備考（請求書）','その他備考',
+				'契約締結年月', 'チャージ提案方式', '契約内容', '面接選考方法', '備考', 'その他備考（エントリーシート）',
 				'登録日時', '最終更新日時');
 		$_extract = array(
 				'Institution.id', 
@@ -190,18 +190,29 @@ class InstitutionsController extends AppController {
 				'Institution.fax',
 				'Institution.email',
 				'Institution.url',
-				'Institution.classification',
-				'Institution.clinical_departments',
-				'Institution.number_of_beds',
-				'Institution.nursing_standards',
-				'Institution.number_of_users',
-				'Institution.expected_annual_income',
+				'Institution.specialty_area',
+				'Institution.designated_invoice',
+				'Institution.company_code',
+				'Institution.mobile_loan',
+				'Institution.transportation_expenses',
+				'Institution.accommodation_contract',
+				'Institution.cad',
+				'Institution.important_point',
+				'Institution.proposal_for_over_60',
+				'Institution.proposal_for_inexperienced',
+				'Institution.proposed_engineer',
+				'Institution.closing_date',
+				'Institution.arrival_date',
+				'Institution.payment_date',
+				'Institution.invoice_remarks',
+				'Institution.other_remarks',
+				
 				'Institution.agreement_date',
-				'Institution.contract_percentage',
-				'Institution.contract_refund_policy',
-				'Institution.contract_document',
-				'Institution.interview_information',
+				'Institution.charge_method',
+				'Institution.contract_contents',
+				'Institution.interview_selection_process',
 				'Institution.other',
+				'Institution.entry_sheet_remarks',
 				'Institution.created_at',
 				'Institution.updated_at');
 		$_enclosure = '"';
