@@ -152,13 +152,13 @@
   <table>
     <thead>
       <tr>
-        <th colspan="7"><kbd> 業務能力</kbd></th>      
+        <th colspan="13"><kbd> 業務能力</kbd></th>      
       </tr>
     </thead>
         
     <tbody>
      <?php foreach($applicant['WorkSkill'] as $skill) {?>
-        <?php echo $this->element('applicant/skill_view', array('skill' => $skill));?>
+        <?php echo $this->element('applicant/skill_view_pdf', array('skill' => $skill));?>
         
      <?php } ?>     
     </tbody>
